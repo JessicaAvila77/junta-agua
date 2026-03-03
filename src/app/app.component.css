@@ -1,0 +1,5 @@
+.layout {
+  display: flex;
+  gap: 16px;              /* ← MISMA separación que entre paneles */
+  background: #f3f4f6;
+}
