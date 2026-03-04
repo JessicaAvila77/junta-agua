@@ -1,14 +1,80 @@
 <div class="sidebar">
 
-  <h3>Junta de Agua</h3>
+  <div class="sidebar-top">
 
-  <a routerLink="/dashboard">🏠 Dashboard</a>
-  <a routerLink="#">👥 Miembros</a>
-  <a routerLink="#">💰 Pagos</a>
-  <a routerLink="#">📁 Proyectos</a>
+    <h1 class="sidebar-title">
+      Junta de Agua <br>
+      Orocuina
+    </h1>
 
-  <hr class="divider">
+    <!-- Dashboard -->
+    <a routerLink="/dashboard" class="main-link">
+      🏠 Dashboard
+    </a>
 
-  <a routerLink="/" class="logout">🚪 Cerrar sesión</a>
+    <!-- Gestión de Miembros -->
+    <div class="menu-group">
+      <div class="menu-title" (click)="toggleMenu('miembros')">
+        👥 Gestión de Miembros
+      </div>
+      <div class="submenu" [class.open]="openMenu === 'miembros'">
+        <a routerLink="/miembros">Registro</a>
+        <a routerLink="/constancias">Constancias</a>
+      </div>
+    </div>
+
+    <!-- Gestión de Servicios -->
+    <div class="menu-group">
+      <div class="menu-title" (click)="toggleMenu('servicios')">
+        💧 Gestión de Servicios
+      </div>
+      <div class="submenu" [class.open]="openMenu === 'servicios'">
+        <a routerLink="/servicios">Servicios</a>
+        <a routerLink="/lecturas">Lecturas</a>
+        <a routerLink="/suspensiones">Suspensiones</a>
+      </div>
+    </div>
+
+    <!-- Gestión Financiera -->
+    <div class="menu-group">
+      <div class="menu-title" (click)="toggleMenu('finanzas')">
+        💰 Gestión Financiera
+      </div>
+      <div class="submenu" [class.open]="openMenu === 'finanzas'">
+        <a routerLink="/facturas">Facturas</a>
+        <a routerLink="/pagos">Pagos</a>
+        <a routerLink="/acuerdos">Acuerdos de Pago</a>
+      </div>
+    </div>
+
+    <!-- Proyectos -->
+    <div class="menu-group">
+      <div class="menu-title" (click)="toggleMenu('proyectos')">
+        📁 Proyectos
+      </div>
+      <div class="submenu" [class.open]="openMenu === 'proyectos'">
+        <a routerLink="/proyectos">Perfil del Proyecto</a>
+        <a routerLink="/cooperantes">Cooperantes</a>
+        <a routerLink="/presupuesto">Presupuesto</a>
+      </div>
+    </div>
+
+    <!-- Activos -->
+    <div class="menu-group">
+      <div class="menu-title" (click)="toggleMenu('activos')">
+        🛠 Activos
+      </div>
+      <div class="submenu" [class.open]="openMenu === 'activos'">
+        <a routerLink="/activos">Registro</a>
+        <a routerLink="/mantenimientos">Mantenimientos</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="sidebar-bottom">
+    <hr class="divider">
+    <a routerLink="/" class="logout">🚪 Cerrar sesión</a>
+  </div>
 
 </div>

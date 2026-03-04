@@ -1,45 +1,180 @@
+/* ===============================
+   SIDEBAR BASE
+=================================*/
+
 .sidebar {
-  width: 200px;
+  width: 240px;
   height: 100vh;
-  background: #ffffff;
-  padding: 30px 18px;
+  box-sizing: border-box;
+  background: #f1efef;
+  padding: 20px 16px;
   position: fixed;
   top: 0;
   left: 0;
-  border-right: 1px solid #e5e7eb;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.sidebar h3 {
-  font-size: 16px;
-  margin-bottom: 25px;
-  font-weight: 600;
+/* ===============================
+   CONTENEDORES
+=================================*/
+
+.sidebar-top {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+}
+
+/* ===============================
+   TITULO
+=================================*/
+
+.sidebar-title {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
   color: #111827;
+  margin-bottom: 30px;
+  line-height: 1.4;
 }
 
-.sidebar a {
+/* ===============================
+   LINKS GENERALES (Dashboard)
+=================================*/
+
+.main-link {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   padding: 10px 12px;
-  border-radius: 8px;
-  color: #6b7280;
+  border-radius: 10px;
+  color: #4b5563;
   text-decoration: none;
-  margin-bottom: 10px;
-  font-size: 14px;
+  margin-bottom: 12px;
+  font-size: 15px;
+  font-weight: 500;
   transition: 0.2s ease;
 }
 
-.sidebar a:hover {
+.main-link:hover {
   background: #f3f4f6;
   color: #111827;
+  transform: translateX(3px);
 }
+
+/* ===============================
+   MENU GROUP
+=================================*/
+
+.menu-group {
+  margin-bottom: 12px;
+}
+
+/* ===============================
+   TITULO CATEGORIA (AZUL OSCURO)
+=================================*/
+
+.menu-title {
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  color: #1e3a8a; /* Azul oscuro institucional */
+  padding: 10px 12px;
+  border-radius: 10px;
+  transition: 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.menu-title:hover {
+  background: #e0e7ff;
+}
+
+/* ===============================
+   SUBMENU
+=================================*/
+
+.submenu {
+  display: none;
+  flex-direction: column;
+  margin-left: 18px;
+  margin-top: 4px;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.submenu.open {
+  display: flex;
+}
+
+/* ===============================
+   SUBMENU LINKS
+=================================*/
+
+.submenu a {
+  font-size: 14px;
+  color: #4b5563;
+  padding: 6px 10px;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+
+.submenu a:hover {
+  background: #f3f4f6;
+  color: #111827;
+  transform: translateX(3px);
+}
+
+/* ===============================
+   DIVIDER
+=================================*/
 
 .divider {
-  margin: 20px 0;
   border: none;
-  border-top: 1px solid #e5e7eb;
+  height: 1px;
+  background: #e5e7eb;
+  margin: 16px 0 20px 0;
 }
 
+/* ===============================
+   LOGOUT
+=================================*/
+
 .logout {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
   color: #dc2626;
+  transition: 0.2s ease;
+}
+
+.logout:hover {
+  background: #fee2e2;
+  transform: translateX(3px);
+}
+
+/* ===============================
+   ANIMACION SUAVE
+=================================*/
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

@@ -1,18 +1,20 @@
 <app-sidebar></app-sidebar>
 
 <div class="content">
-
   <!-- PANEL PRINCIPAL -->
   <div class="main-panel">
+    <div class="panel-header">
+  <div class="panel-header-content">
     <h2>Panel Administrativo</h2>
-    <p class="subtitle">Resumen general del sistema</p>
+    <span class="panel-subtitle">Resumen general del sistema</span>
+  </div>
+</div>
 
     <div class="cards-container">
-
       <div class="card">
         <div class="card-icon members">👥</div>
         <div>
-          <h4>Miembros</h4>
+          <h3>Miembros</h3>
           <p>120</p>
         </div>
       </div>
@@ -20,7 +22,7 @@
       <div class="card">
         <div class="card-icon payments">💰</div>
         <div>
-          <h4>Pagos (Mes)</h4>
+          <h3>Pagos (Mes)</h3>
           <p>85</p>
         </div>
       </div>
@@ -28,7 +30,7 @@
       <div class="card">
         <div class="card-icon projects">📁</div>
         <div>
-          <h4>Proyectos</h4>
+          <h3>Proyectos</h3>
           <p>3</p>
         </div>
       </div>
@@ -36,17 +38,66 @@
       <div class="card">
         <div class="card-icon alert">⚠️</div>
         <div>
-          <h4>Servicios Suspendidos</h4>
+          <h3>Servicios Suspendidos</h3>
           <p>5</p>
         </div>
       </div>
 
+      <!-- Facturas Vencidas -->
+      <div class="card">
+        <div class="card-icon danger">🧾</div>
+        <div>
+          <h3>Facturas Vencidas</h3>
+          <p>18</p>
+        </div>
+      </div>
+
+      <!-- Acuerdos de Pago -->
+      <div class="card">
+        <div class="card-icon warning">📑</div>
+        <div>
+          <h3>Acuerdos de pago</h3>
+          <p>6</p>
+        </div>
+      </div>
+
+      <!-- % Morosidad -->
+      <div class="card">
+        <div class="card-icon percentage">📊</div>
+        <div>
+          <h3>% Morosidad</h3>
+          <p>15%</p>
+        </div>
+      </div>
+
+      <!-- Mantenimientos Pendientes -->
+      <div class="card">
+        <div class="card-icon maintenance">🔧</div>
+        <div>
+          <h3>Mantenimientos Pendientes</h3>
+          <p>4</p>
+        </div>
+      </div>
+
+      <!-- Activos Registrados -->
+      <div class="card">
+        <div class="card-icon assets">🛠</div>
+        <div>
+          <h3>Activos Registrados</h3>
+          <p>27</p>
+        </div>
+      </div>
     </div>
   </div>
 
   <!-- ACTIVIDADES APARTE -->
   <div class="activity-panel">
     <h3>Actividades recientes</h3>
+
+      <div class="activity-item">
+      <strong>Mantenimiento realizado</strong>
+      <p>Hoy</p>
+    </div>
 
     <div class="activity-item">
       <strong>Pago registrado</strong>
@@ -58,6 +109,7 @@
       <p>Ayer</p>
     </div>
 
+    
+  
   </div>
-
 </div>
