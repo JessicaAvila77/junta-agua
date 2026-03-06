@@ -1,0 +1,127 @@
+<app-sidebar></app-sidebar>
+
+<div class="content">
+  <div class="panel-header">
+    <h2>Registro de Medidores</h2>
+    <span class="panel-subtitle"> Gestión de medidores del sistema </span>
+  </div>
+
+  <!-- FORMULARIO -->
+
+  <div class="form-card">
+    <h3 class="section-title">Buscar servicio</h3>
+
+    <div class="form-row">
+      <input
+        type="text"
+        placeholder="Código cliente (CLI-001)"
+        [(ngModel)]="codigoServicioBusqueda"
+      />
+
+      <button class="btn-primary" (click)="buscarServicio()">Buscar</button>
+    </div>
+
+    <div *ngIf="servicioEncontrado" class="info-servicio">
+      <strong>Servicio encontrado</strong>
+
+      <p>ID Servicio: {{ servicioEncontrado.id_servicio }}</p>
+      <p>Código cliente: {{ servicioEncontrado.codigo_cliente }}</p>
+      <p>Dirección: {{ servicioEncontrado.direccion_servicio }}</p>
+    </div>
+
+    <h3 class="section-title">Datos del medidor</h3>
+
+    <div class="form-row">
+      <input
+        type="text"
+        placeholder="Número de serie"
+        [(ngModel)]="numeroSerie"
+      />
+
+      <select [(ngModel)]="estado">
+        <option value="Activo">Activo</option>
+        <option value="Retirado">Retirado</option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Fecha instalación</label>
+
+        <input type="date" [(ngModel)]="fechaInstalacion" />
+      </div>
+
+      <div class="form-group">
+        <label>Fecha retiro</label>
+
+        <input type="date" [(ngModel)]="fechaRetiro" />
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button class="btn-primary" (click)="guardarMedidor()">
+        {{ editando ? "Actualizar medidor" : "Guardar medidor" }}
+      </button>
+
+      <button class="btn-secondary" (click)="limpiarFormulario()">
+        Cancelar
+      </button>
+    </div>
+  </div>
+
+  <!-- TABLA -->
+
+  <div class="table-card">
+    <div class="table-header">
+      <h3>Medidores registrados</h3>
+
+      <input
+        class="search-input"
+        placeholder="Buscar medidor por serie"
+        [(ngModel)]="busquedaMedidor"
+      />
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>ID Medidor</th>
+            <th>ID Servicio</th>
+            <th>Número serie</th>
+            <th>Instalación</th>
+            <th>Retiro</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let medidor of medidoresFiltrados(); let i = index">
+            <td>{{ medidor.id_medidor }}</td>
+
+            <td>{{ medidor.id_servicio }}</td>
+
+            <td>{{ medidor.numero_serie }}</td>
+
+            <td>{{ medidor.fecha_instalacion }}</td>
+
+            <td>{{ medidor.fecha_retiro }}</td>
+
+            <td>{{ medidor.estado }}</td>
+
+            <td class="actions">
+              <button class="btn-edit" (click)="editarMedidor(medidor)">
+                Editar
+              </button>
+
+              <button class="btn-delete" (click)="eliminarMedidor(i)">
+                Eliminar
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

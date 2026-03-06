@@ -1,0 +1,110 @@
+<app-sidebar></app-sidebar>
+
+<div class="content">
+  <div class="panel-header">
+    <h2>Registro de Tarifas</h2>
+    <span class="panel-subtitle"> Gestión de tarifas del sistema </span>
+  </div>
+
+  <div class="form-card">
+    <h3 class="section-title">Datos de tarifa</h3>
+
+    <div class="form-row">
+      <select [(ngModel)]="tipoServicio">
+        <option value="Domestico">Doméstico</option>
+        <option value="Comercial">Comercial</option>
+      </select>
+
+      <select [(ngModel)]="estado">
+        <option value="Activa">Activa</option>
+        <option value="Inactiva">Inactiva</option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Monto base</label>
+
+        <input type="number" [(ngModel)]="montoBase" />
+      </div>
+
+      <div class="form-group">
+        <label>Costo por m³</label>
+
+        <input type="number" [(ngModel)]="precioM3" />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Fecha vigencia</label>
+
+        <input type="date" [(ngModel)]="fechaVigencia" />
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button class="btn-primary" (click)="guardarTarifa()">
+        {{ editando ? "Actualizar tarifa" : "Guardar tarifa" }}
+      </button>
+
+      <button class="btn-secondary" (click)="limpiarFormulario()">
+        Cancelar
+      </button>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <div class="table-header">
+      <h3>Tarifas registradas</h3>
+
+      <input
+        class="search-input"
+        placeholder="Buscar tarifa tipo servicio"
+        [(ngModel)]="busquedaTarifa"
+      />
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Tipo servicio</th>
+            <th>Monto base</th>
+            <th>Precio m³</th>
+            <th>Vigencia</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let tarifa of tarifasFiltradas(); let i = index">
+            <td>{{ tarifa.id_tarifa }}</td>
+
+            <td>{{ tarifa.tipo_servicio }}</td>
+
+            <td>{{ tarifa.monto_base }}</td>
+
+            <td>{{ tarifa.precio_por_m3 }}</td>
+
+            <td>{{ tarifa.fecha_vigencia }}</td>
+
+            <td>{{ tarifa.estado }}</td>
+
+            <td class="actions">
+              <button class="btn-edit" (click)="editarTarifa(tarifa)">
+                Editar
+              </button>
+
+              <button class="btn-delete" (click)="eliminarTarifa(i)">
+                Eliminar
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

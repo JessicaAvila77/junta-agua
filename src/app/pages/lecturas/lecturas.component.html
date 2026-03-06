@@ -1,0 +1,121 @@
+<app-sidebar></app-sidebar>
+
+<div class="content">
+  <div class="panel-header">
+    <h2>Registro de Lecturas</h2>
+    <span class="panel-subtitle"> Gestión de lecturas de medidores </span>
+  </div>
+
+  <div class="form-card">
+    <h3 class="section-title">Buscar medidor</h3>
+
+    <div class="form-row">
+      <input
+        type="text"
+        placeholder="Número de serie"
+        [(ngModel)]="numeroSerieBusqueda"
+      />
+
+      <button class="btn-primary" (click)="buscarMedidor()">Buscar</button>
+    </div>
+
+    <div *ngIf="medidorEncontrado" class="info-medidor">
+      <p><strong>ID Medidor:</strong> {{ medidorEncontrado.id_medidor }}</p>
+      <p><strong>Número serie:</strong> {{ medidorEncontrado.numero_serie }}</p>
+    </div>
+
+    <h3 class="section-title">Datos de lectura</h3>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Fecha lectura</label>
+
+        <input type="date" [(ngModel)]="fechaLectura" />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Lectura anterior</label>
+
+        <input type="number" [ngModel]="lecturaAnterior" readonly />
+      </div>
+
+      <div class="form-group">
+        <label>Lectura actual</label>
+
+        <input
+          type="number"
+          [(ngModel)]="lecturaActual"
+          (ngModelChange)="calcularConsumo()"
+        />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Consumo (m³)</label>
+
+        <input type="number" [ngModel]="consumo" readonly />
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button class="btn-primary" (click)="guardarLectura()">
+        {{ editando ? "Actualizar lectura" : "Guardar lectura" }}
+      </button>
+
+      <button class="btn-secondary" (click)="limpiarFormulario()">
+        Cancelar
+      </button>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <div class="table-header">
+      <h3>Historial de lecturas</h3>
+
+      <input
+        class="search-input"
+        placeholder="Buscar por ID Medidor"
+        [(ngModel)]="busquedaLectura"
+      />
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>ID Lectura</th>
+            <th>ID Medidor</th>
+            <th>Fecha</th>
+            <th>Consumo</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let lectura of lecturasFiltradas(); let i = index">
+            <td>{{ lectura.id_lectura }}</td>
+
+            <td>{{ lectura.id_medidor }}</td>
+
+            <td>{{ lectura.fecha_lectura }}</td>
+
+            <td>{{ lectura.consumo }} m³</td>
+
+            <td class="actions">
+              <button class="btn-edit" (click)="editarLectura(lectura)">
+                Editar
+              </button>
+
+              <button class="btn-delete" (click)="eliminarLectura(i)">
+                Eliminar
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

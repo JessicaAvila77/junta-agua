@@ -37,23 +37,27 @@ export class ServiciosComponent {
 
   miembros: Miembro[] = [
 
-    {
-      id_miembro:1,
-      identidad:'0607197700818',
-      nombre:'Juan Pérez',
-      telefono:'99998888',
-      direccion:'Barrio Centro'
-    },
+  {
+    id_miembro:1,
+    identidad:'0607197700818',
+    nombre:'Juan Pérez',
+    telefono:'99998888',
+    direccion:'Barrio Centro',
+    fecha_ingreso:'2024-01-10',
+    estado:'Activo'
+  },
 
-    {
-      id_miembro:2,
-      identidad:'0801199012345',
-      nombre:'Ana López',
-      telefono:'98887777',
-      direccion:'Colonia Progreso'
-    }
+  {
+    id_miembro:2,
+    identidad:'0801199012345',
+    nombre:'Ana López',
+    telefono:'98887777',
+    direccion:'Colonia Progreso',
+    fecha_ingreso:'2024-02-15',
+    estado:'Activo'
+  }
 
-  ];
+];
 
 
   buscarMiembro(){

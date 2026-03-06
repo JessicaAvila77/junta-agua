@@ -3,90 +3,137 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SidebarComponent } from '../../components/sidebar/sidebar.component';
 
+import { Miembro } from '../../models/miembro.model';
+
 @Component({
   selector: 'app-miembros',
   standalone: true,
   imports: [CommonModule, FormsModule, SidebarComponent],
   templateUrl: './miembros.component.html',
-  styleUrl: './miembros.component.css'
+  styleUrl: './miembros.component.css',
 })
 export class MiembrosComponent {
-
   nombre = '';
-  apellido = '';
   identidad = '';
   telefono = '';
   direccion = '';
   fechaIngreso = '';
   estado = 'Activo';
 
-  miembros: any[] = [];
+  busquedaMiembro: string = '';
 
-  contadorMiembros:number = 1;
+  miembros: Miembro[] = [
+    {
+      id_miembro: 1,
+      identidad: '0607197700818',
+      nombre: 'Juan Pérez',
+      telefono: '99998888',
+      direccion: 'Barrio Centro',
+      fecha_ingreso: '2024-01-10',
+      estado: 'Activo',
+    },
 
-  editando:boolean=false;
-  indexEditando:number=-1;
+    {
+      id_miembro: 2,
+      identidad: '0801199012345',
+      nombre: 'Ana López',
+      telefono: '98887777',
+      direccion: 'Colonia Progreso',
+      fecha_ingreso: '2024-02-15',
+      estado: 'Activo',
+    },
+  ];
 
-  guardarMiembro(){
+  contadorMiembros: number = 3;
 
-    const nuevoMiembro = {
-      codigo:'MBR-'+this.contadorMiembros.toString().padStart(3,'0'),
-      nombre:this.nombre,
-      apellido:this.apellido,
-      identidad:this.identidad,
-      telefono:this.telefono,
-      direccion:this.direccion,
-      fechaIngreso:this.fechaIngreso,
-      estado:this.estado
-    };
+  editando: boolean = false;
+  indexEditando: number = -1;
 
-    if(this.editando){
+ guardarMiembro(){
 
-      this.miembros[this.indexEditando] = nuevoMiembro;
+  const nuevoMiembro: Miembro = {
 
-      this.editando=false;
-      this.indexEditando=-1;
+    id_miembro: this.editando
+      ? this.indexEditando
+      : this.contadorMiembros,
 
-    }else{
+    identidad: this.identidad,
+    nombre: this.nombre,
+    telefono: this.telefono,
+    direccion: this.direccion,
+    fecha_ingreso: this.fechaIngreso,
+    estado: this.estado
 
-      this.miembros.push(nuevoMiembro);
-      this.contadorMiembros++;
+  };
 
+  if(this.editando){
+
+    const index = this.miembros.findIndex(
+      m => m.id_miembro === this.indexEditando
+    );
+
+    if(index !== -1){
+      this.miembros[index] = nuevoMiembro;
     }
 
-    this.limpiarFormulario();
+    this.editando = false;
+    this.indexEditando = -1;
+
+  }else{
+
+    this.miembros.push(nuevoMiembro);
+    this.contadorMiembros++;
 
   }
 
-  editarMiembro(miembro:any,index:number){
+  this.limpiarFormulario();
 
-    this.nombre = miembro.nombre;
-    this.apellido = miembro.apellido;
-    this.identidad = miembro.identidad;
-    this.telefono = miembro.telefono;
-    this.direccion = miembro.direccion;
-    this.fechaIngreso = miembro.fechaIngreso;
-    this.estado = miembro.estado;
+}
 
-    this.editando=true;
-    this.indexEditando=index;
+ editarMiembro(miembro:Miembro){
 
+  this.nombre = miembro.nombre;
+  this.identidad = miembro.identidad;
+  this.telefono = miembro.telefono;
+  this.direccion = miembro.direccion;
+  this.fechaIngreso = miembro.fecha_ingreso;
+  this.estado = miembro.estado;
+
+  this.indexEditando = miembro.id_miembro;
+
+  this.editando = true;
+
+}
+
+  eliminarMiembro(index: number) {
+    this.miembros.splice(index, 1);
   }
 
-  eliminarMiembro(index:number){
-    this.miembros.splice(index,1);
+  limpiarFormulario() {
+    this.nombre = '';
+    this.identidad = '';
+    this.telefono = '';
+    this.direccion = '';
+    this.fechaIngreso = '';
+    this.estado = 'Activo';
+
+    this.editando = false;
+    this.indexEditando = -1;
   }
 
-  limpiarFormulario(){
+  miembrosFiltrados(): Miembro[] {
+    if (!this.busquedaMiembro) {
+      return this.miembros;
+    }
 
-    this.nombre='';
-    this.apellido='';
-    this.identidad='';
-    this.telefono='';
-    this.direccion='';
-    this.fechaIngreso='';
-    this.estado='Activo';
+    const texto = this.busquedaMiembro.toLowerCase();
 
+    return this.miembros.filter(
+      (miembro) =>
+        miembro.identidad === this.busquedaMiembro ||
+        miembro.nombre.toLowerCase().includes(texto) ||
+        miembro.telefono.toLowerCase().includes(texto) ||
+        miembro.direccion.toLowerCase().includes(texto),
+    );
   }
-
 }

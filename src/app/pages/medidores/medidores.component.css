@@ -1,9 +1,13 @@
+/* CONTENEDOR PRINCIPAL */
+
 .content{
   margin-left:240px;
   padding:30px;
   background:#f5f6f8;
   min-height:100vh;
 }
+
+/* BARRA SUPERIOR */
 
 .panel-header{
   background:#1e9c98;
@@ -23,6 +27,8 @@
   opacity:0.9;
 }
 
+/* TARJETAS */
+
 .form-card,
 .table-card{
   background:white;
@@ -32,11 +38,16 @@
   margin-bottom:25px;
 }
 
+/* TITULOS */
+
 .section-title{
   font-size:15px;
   font-weight:500;
+  margin-top:20px;
   margin-bottom:10px;
 }
+
+/* FILAS DEL FORMULARIO */
 
 .form-row{
   display:flex;
@@ -44,20 +55,16 @@
   margin-bottom:15px;
 }
 
-.form-row input{
+.form-row input,
+.form-row select{
   flex:1;
   padding:10px;
   border-radius:8px;
   border:1px solid #d1d5db;
   font-size:14px;
 }
-.form-row input,
-.form-row select{
-  flex:1;
-  padding:10px;
-  border-radius:8px;
-  border:1px solid #e5e7eb;
-}
+
+/* BOTONES */
 
 .form-actions{
   margin-top:20px;
@@ -73,6 +80,10 @@
   cursor:pointer;
 }
 
+.btn-primary:hover{
+  background:#178a87;
+}
+
 .btn-secondary{
   background:#e5e7eb;
   border:none;
@@ -80,6 +91,8 @@
   border-radius:8px;
   cursor:pointer;
 }
+
+/* TABLA */
 
 .table-header{
   display:flex;
@@ -94,10 +107,14 @@
   border:1px solid #d1d5db;
 }
 
+/* CONTENEDOR CON SCROLL */
+
 .table-container{
   max-height:300px;
   overflow-y:auto;
 }
+
+/* TABLA */
 
 table{
   width:100%;
@@ -106,6 +123,7 @@ table{
 
 thead th{
   text-align:left;
+  font-weight:500;
   padding:10px;
   border-bottom:2px solid #e5e7eb;
   background:white;
@@ -117,6 +135,8 @@ td{
   padding:10px;
   border-bottom:1px solid #f1f1f1;
 }
+
+/* ACCIONES */
 
 .actions button{
   padding:5px 10px;
@@ -136,16 +156,28 @@ td{
   color:white;
 }
 
-.input-fecha{
-  flex:0.5;
-  padding:8px;
+.search-input{
+  padding:8px 10px;
   border-radius:8px;
-  border:1px solid #e5e7eb;
+  border:1px solid #d1d5db;
 }
 
-.input-estado{
-  flex:1.5;
-  padding:8px;
+.form-group{
+  display:flex;
+  flex-direction:column;
+  flex:1;
+}
+
+.form-group label{
+  font-size:13px;
+  margin-bottom:4px;
+  color:#555;
+}
+
+.info-servicio{
+  background:#f3f4f6;
+  padding:10px;
   border-radius:8px;
-  border:1px solid #e5e7eb;
+  margin-bottom:15px;
+  font-size:14px;
 }

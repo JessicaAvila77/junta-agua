@@ -6,5 +6,7 @@ export interface Miembro {
   nombre: string
   telefono: string
   direccion: string
+  fecha_ingreso: string
+  estado: string
 
 }
