@@ -1,0 +1,124 @@
+<app-sidebar></app-sidebar>
+
+<div class="content">
+  <div class="panel-header">
+    <h2>Gestión de Servicios</h2>
+    <span class="panel-subtitle"> Registro y control de servicios </span>
+  </div>
+
+  <div class="form-card">
+    <h3 class="section-title">Buscar miembro</h3>
+
+    <div class="form-row">
+      <input
+        type="text"
+        placeholder="Identidad del miembro"
+        [(ngModel)]="identidadBusqueda"
+      />
+
+      <button class="btn-primary" (click)="buscarMiembro()">Buscar</button>
+    </div>
+
+    <div *ngIf="miembroEncontrado">
+      <p><b>Nombre:</b> {{ miembroEncontrado.nombre }}</p>
+      <p><b>Teléfono:</b> {{ miembroEncontrado.telefono }}</p>
+      <p><b>Dirección:</b> {{ miembroEncontrado.direccion }}</p>
+    </div>
+
+    <h3 class="section-title">Datos del servicio</h3>
+
+    <div class="form-row">
+      <select [(ngModel)]="tipoServicio">
+        <option value="Domestico">Doméstico</option>
+        <option value="Comercial">Comercial</option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <input
+        type="text"
+        placeholder="Dirección del servicio"
+        [(ngModel)]="direccionServicio"
+      />
+    </div>
+
+    <div class="form-row">
+      <select [(ngModel)]="estadoServicio">
+        <option value="Activo">Activo</option>
+        <option value="Suspendido">Suspendido</option>
+      </select>
+    </div>
+
+    <div class="form-actions">
+      <button class="btn-primary" (click)="guardarServicio()">
+        {{ editando ? "Actualizar servicio" : "Guardar servicio" }}
+      </button>
+
+      <button class="btn-secondary" (click)="limpiarFormulario()">
+        Cancelar
+      </button>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <div class="table-header">
+      <h3>Servicios registrados</h3>
+
+      <div class="table-header">
+        <h4>Buscar un servicio</h4>
+
+        <input
+          class="search-input"
+          type="text"
+          placeholder="Buscar servicio..."
+          [(ngModel)]="busquedaServicio"
+        />
+      </div>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Miembro</th>
+            <th>Identidad</th>
+            <th>Código cliente</th>
+            <th>Dirección</th>
+            <th>Tipo</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let servicio of serviciosFiltrados(); let i=index">
+            <td>{{ servicio.id_servicio }}</td>
+
+            <td>{{ obtenerMiembro(servicio.id_miembro)?.nombre }}</td>
+
+            <td>{{ obtenerMiembro(servicio.id_miembro)?.identidad }}</td>
+
+            <td>{{ servicio.codigo_cliente }}</td>
+
+            <td>{{ servicio.direccion_servicio }}</td>
+
+            <td>{{ servicio.tipo_servicio }}</td>
+
+            <td>{{ servicio.estado }}</td>
+
+            <td class="actions">
+              <button class="btn-edit" (click)="editarServicio(servicio, i)">
+                Editar
+              </button>
+
+              <button class="btn-delete" (click)="eliminarServicio(i)">
+                Eliminar
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

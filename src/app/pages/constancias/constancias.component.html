@@ -1,0 +1,118 @@
+<app-sidebar></app-sidebar>
+
+<div class="content">
+  <div class="panel-header">
+    <h2>Generación de Constancias</h2>
+    <span>Emisión de constancias para miembros</span>
+  </div>
+
+  <!-- FORMULARIO -->
+
+  <div class="form-card">
+    <div class="form-row">
+      <select [(ngModel)]="miembroSeleccionado">
+        <option [ngValue]="null">Seleccione miembro</option>
+
+        <option *ngFor="let m of miembros" [ngValue]="m">
+          {{ m.nombre }} - {{ m.identidad }}
+        </option>
+      </select>
+
+      <select [(ngModel)]="tipoConstancia">
+        <option value="">Tipo de constancia</option>
+        <option>Constancia de Vecindad</option>
+        <option>Constancia de Residencia</option>
+        <option>Constancia de Miembro Activo</option>
+        <option>Constancia de Solvencia</option>
+      </select>
+    </div>
+
+    <div class="form-actions">
+      <button class="btn-primary" (click)="generarConstancia()">
+        Generar constancia
+      </button>
+    </div>
+  </div>
+
+  <!-- CONSTANCIA -->
+
+  <div *ngIf="constanciaGenerada" id="constancia" class="constancia-card">
+    <h2>JUNTA DE AGUA DE OROCUINA</h2>
+
+    <h3>{{ constanciaGenerada.tipo }}</h3>
+
+    <p class="codigo">Código: {{ constanciaGenerada.codigo }}</p>
+
+    <p>
+      La Junta de Agua de Orocuina hace constar que el ciudadano
+
+      <strong>{{ constanciaGenerada.miembro }}</strong>
+
+      con número de identidad
+
+      <strong>{{ constanciaGenerada.identidad }}</strong>
+
+      es miembro activo del sistema de agua potable de la comunidad.
+    </p>
+
+    <p>Se extiende la presente constancia a solicitud del interesado.</p>
+
+    <p>{{ constanciaGenerada.lugar }}, {{ constanciaGenerada.fecha }}</p>
+
+    <div class="firma">
+      <br />
+
+      ____________________________ <br />
+
+      Presidente Junta de Agua
+    </div>
+
+    <br />
+    <button class="btn-primary" (click)="imprimir()">
+      Imprimir constancia
+    </button>
+  </div>
+
+  <br />
+
+  <!-- TABLA -->
+
+  <div class="table-card">
+    <h3>Constancias emitidas</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Miembro</th>
+          <th>Identidad</th>
+          <th>Tipo</th>
+          <th>Fecha</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let c of constancias; let i = index">
+          <td>{{ c.codigo }}</td>
+          <td>{{ c.miembro }}</td>
+          <td>{{ c.identidad }}</td>
+          <td>{{ c.tipo }}</td>
+          <td>{{ c.fecha }}</td>
+          <td>{{ c.estado }}</td>
+
+          <td>
+            <button class="btn-print" (click)="imprimirConstancia(c)">
+              Imprimir
+            </button>
+
+            <button class="btn-delete" (click)="eliminarConstancia(i)">
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

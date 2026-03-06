@@ -1,0 +1,139 @@
+.content{
+margin-left:240px;
+padding:30px;
+background:#f5f6f8;
+min-height:100vh;
+}
+
+.panel-header{
+background:#1e9c98;
+color:white;
+padding:20px;
+border-radius:12px;
+margin-bottom:20px;
+}
+
+.form-card{
+background:white;
+padding:25px;
+border-radius:12px;
+border:1px solid #e5e7eb;
+margin-bottom:20px;
+}
+
+.form-row{
+display:flex;
+gap:15px;
+}
+
+.form-row select{
+flex:1;
+padding:10px;
+border-radius:8px;
+border:1px solid #d1d5db;
+}
+
+.form-actions{
+margin-top:20px;
+}
+
+.btn-primary{
+background:#1e9c98;
+color:white;
+border:none;
+padding:10px 20px;
+border-radius:8px;
+cursor:pointer;
+}
+
+.table-card{
+background:white;
+border-radius:12px;
+padding:20px;
+border:1px solid #e5e7eb;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th{
+text-align:left;
+padding:10px;
+border-bottom:2px solid #e5e7eb;
+}
+
+td{
+padding:10px;
+border-bottom:1px solid #f1f1f1;
+}
+
+.btn-delete{
+background:#ef4444;
+color:white;
+border:none;
+padding:6px 10px;
+border-radius:6px;
+cursor:pointer;
+}
+
+.constancia-card{
+background:white;
+border-radius:12px;
+padding:50px;
+margin-top:30px;
+text-align:center;
+max-width:700px;
+margin-left:auto;
+margin-right:auto;
+border:1px solid #e5e7eb;
+}
+
+.codigo{
+font-weight:bold;
+margin-bottom:20px;
+}
+
+.firma{
+margin-top:60px;
+}
+
+@page{
+size: letter;
+margin:2cm;
+}
+
+@media print{
+
+body *{
+display:none !important;
+}
+
+#constancia{
+display:block !important;
+position:absolute;
+top:0;
+left:0;
+right:0;
+margin:auto;
+width:700px;
+border:none;
+box-shadow:none;
+}
+
+#constancia button{
+display:none !important;
+}
+
+}
+
+.btn-print{
+background:#2563eb;
+color:white;
+border:none;
+padding:6px 10px;
+border-radius:6px;
+cursor:pointer;
+margin-right:5px;
+}

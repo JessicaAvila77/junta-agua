@@ -1,0 +1,120 @@
+<app-sidebar></app-sidebar>
+
+<div class="content">
+
+  <div class="panel-header">
+    <h2>Registro de Miembros</h2>
+    <span class="panel-subtitle">
+      Gestión de miembros de la comunidad
+    </span>
+  </div>
+
+  <!-- FORMULARIO -->
+  <div class="form-card">
+
+    <h3 class="section-title">Datos personales</h3>
+
+    <div class="form-row">
+      <input type="text" placeholder="Nombres" [(ngModel)]="nombre">
+      <input type="text" placeholder="Apellidos" [(ngModel)]="apellido">
+    </div>
+
+    <div class="form-row">
+      <input type="text" placeholder="Identidad" [(ngModel)]="identidad">
+      <input type="text" placeholder="Teléfono" [(ngModel)]="telefono">
+    </div>
+
+    <div class="form-row">
+      <input type="text" placeholder="Dirección" [(ngModel)]="direccion">
+    </div>
+
+    <h3 class="section-title">Datos de membresía</h3>
+
+    <div class="form-row">
+
+      <input type="date" [(ngModel)]="fechaIngreso">
+
+      <select [(ngModel)]="estado">
+        <option value="Activo">Activo</option>
+        <option value="Inactivo">Inactivo</option>
+      </select>
+
+    </div>
+
+    <div class="form-actions">
+
+      <button class="btn-primary" (click)="guardarMiembro()">
+        {{ editando ? 'Actualizar miembro' : 'Guardar miembro' }}
+      </button>
+
+      <button class="btn-secondary" (click)="limpiarFormulario()">
+        Cancelar
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- TABLA -->
+  <div class="table-card">
+
+    <div class="table-header">
+      <h3>Miembros registrados</h3>
+    </div>
+
+    <div class="table-container">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Identidad</th>
+            <th>Teléfono</th>
+            <th>Dirección</th>
+            <th>Fecha ingreso</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr *ngFor="let miembro of miembros; let i=index">
+
+            <td>{{miembro.codigo}}</td>
+            <td>{{miembro.nombre}}</td>
+            <td>{{miembro.apellido}}</td>
+            <td>{{miembro.identidad}}</td>
+            <td>{{miembro.telefono}}</td>
+            <td>{{miembro.direccion}}</td>
+            <td>{{miembro.fechaIngreso}}</td>
+            <td>{{miembro.estado}}</td>
+
+            <td class="actions">
+
+              <button class="btn-edit"
+              (click)="editarMiembro(miembro,i)">
+              Editar
+              </button>
+
+              <button class="btn-delete"
+              (click)="eliminarMiembro(i)">
+              Eliminar
+              </button>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</div>

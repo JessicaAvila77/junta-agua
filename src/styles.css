@@ -11,3 +11,43 @@ body {
   margin: 0;
   overflow-x: hidden;
 }
+
+/* ===== IMPRESIÓN SOLO CONSTANCIA ===== */
+
+@page{
+  size: letter;
+  margin: 2cm;
+}
+
+@media print {
+
+  /* Ocultar TODO por defecto */
+  body * {
+    visibility: hidden !important;
+  }
+
+  /* Mostrar solo la constancia */
+  #constancia,
+  #constancia * {
+    visibility: visible !important;
+  }
+
+  /* Posicionar la constancia centrada en la hoja */
+  #constancia{
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto !important;
+    width: 700px !important;
+    background: white !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  /* Ocultar botón imprimir */
+  #constancia button{
+    display: none !important;
+  }
+
+}
