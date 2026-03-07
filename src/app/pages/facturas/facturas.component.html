@@ -1,0 +1,106 @@
+<app-sidebar></app-sidebar>
+
+<div class="content">
+  <div class="panel-header">
+    <h2>Facturación</h2>
+    <div class="panel-subtitle">Gestión de facturación del sistema de agua</div>
+  </div>
+
+  <div class="form-card">
+    <div class="section-title">Facturación mensual</div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Periodo</label>
+        <input
+          type="text"
+          placeholder="Ej: Marzo 2026"
+          [(ngModel)]="periodoSeleccionado"
+        />
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button class="btn-primary" (click)="generarFacturacion()">
+        Generar facturación
+      </button>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <div class="table-header">
+      <h3>Facturas generadas</h3>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Factura</th>
+            <th>ID servicio</th>
+            <th>Cliente</th>
+            <th>Código</th>
+            <th>Periodo</th>
+            <th>Total</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let f of facturas">
+            <td>{{ f.codigo_factura }}</td>
+            <td>{{ f.id_factura }}</td>
+            <td>{{ f.nombre_cliente }}</td>
+            <td>{{ f.codigo_cliente }}</td>
+            <td>{{ f.periodo }}</td>
+            <td>L {{ f.monto_total }}</td>
+
+            <td [ngClass]="{ 'estado-anulada': f.estado === 'Anulada' }">
+              {{ f.estado }}
+            </td>
+
+            <td class="actions">
+              <button class="btn-edit" (click)="verFactura(f)">Ver</button>
+
+              <button class="btn-delete" (click)="anularFactura(f)">
+                Anular
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="factura-print" *ngIf="facturaVista">
+    <h3>Factura</h3>
+    <p><b>No Factura:</b> {{ facturaVista.codigo_factura }}</p>
+
+    <hr />
+
+    <p><b>Cliente:</b> {{ facturaVista.nombre_cliente }}</p>
+
+    <p><b>Identidad:</b> {{ facturaVista.identidad }}</p>
+
+    <p><b>Código cliente:</b> {{ facturaVista.codigo_cliente }}</p>
+
+    <p><b>Dirección:</b> {{ facturaVista.direccion_servicio }}</p>
+
+    <p><b>Periodo:</b> {{ facturaVista.periodo }}</p>
+
+    <p><b>Consumo:</b> {{ facturaVista.consumo }} m³</p>
+
+    <p><b>Total:</b> L {{ facturaVista.monto_total }}</p>
+
+    <p><b>Fecha emisión:</b> {{ facturaVista.fecha_emision }}</p>
+
+    <p><b>Fecha vencimiento:</b> {{ facturaVista.fecha_vencimiento }}</p>
+
+    <p><b>Estado:</b> {{ facturaVista.estado }}</p>
+
+    <hr />
+
+    <button class="btn-primary no-print" (click)="imprimir()">Imprimir</button>
+  </div>
+</div>

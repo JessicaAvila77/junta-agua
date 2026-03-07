@@ -1,7 +1,7 @@
 .content{
   margin-left:240px;
   padding:30px;
-  background:#e1e4e8;
+  background:#f5f6f8;
   min-height:100vh;
 }
 
@@ -15,7 +15,6 @@
 
 .panel-header h2{
   margin:0;
-  font-weight:500;
 }
 
 .panel-subtitle{
@@ -35,28 +34,24 @@
 .section-title{
   font-size:15px;
   font-weight:500;
-  margin-bottom:10px;
+  margin-bottom:15px;
 }
 
 .form-row{
   display:flex;
   gap:15px;
-  margin-bottom:15px;
 }
 
-.form-row input{
+.form-group{
+  display:flex;
+  flex-direction:column;
   flex:1;
+}
+
+.form-group input{
   padding:10px;
   border-radius:8px;
   border:1px solid #d1d5db;
-  font-size:14px;
-}
-.form-row input,
-.form-row select{
-  flex:1;
-  padding:10px;
-  border-radius:8px;
-  border:1px solid #e5e7eb;
 }
 
 .form-actions{
@@ -69,29 +64,25 @@
   border:none;
   padding:10px 18px;
   border-radius:8px;
-  margin-right:10px;
   cursor:pointer;
 }
 
-.btn-secondary{
-  background:#e5e7eb;
+.btn-edit{
+  background:#3b82f6;
+  color:white;
   border:none;
-  padding:10px 18px;
-  border-radius:8px;
+  padding:5px 10px;
+  border-radius:6px;
   cursor:pointer;
 }
 
-.table-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:15px;
-}
-
-.search-input{
-  padding:8px 10px;
-  border-radius:8px;
-  border:1px solid #d1d5db;
+.btn-delete{
+  background:#ef4444;
+  color:white;
+  border:none;
+  padding:5px 10px;
+  border-radius:6px;
+  cursor:pointer;
 }
 
 .table-container{
@@ -108,9 +99,6 @@ thead th{
   text-align:left;
   padding:10px;
   border-bottom:2px solid #e5e7eb;
-  background:white;
-  position:sticky;
-  top:0;
 }
 
 td{
@@ -119,33 +107,48 @@ td{
 }
 
 .actions button{
-  padding:5px 10px;
   margin-right:5px;
-  border-radius:6px;
-  border:none;
-  cursor:pointer;
 }
 
-.btn-edit{
-  background:#3b82f6;
-  color:white;
+.estado-anulada{
+  color:#ef4444;
+  font-weight:600;
 }
 
-.btn-delete{
-  background:#ef4444;
-  color:white;
+.factura-print{
+  width:350px;
+  margin:40px auto;
+  background:white;
+  padding:20px;
+  border:1px solid #ddd;
+  text-align:center;
 }
 
-.input-fecha{
-  flex:0.5;
-  padding:8px;
-  border-radius:8px;
-  border:1px solid #e5e7eb;
+.factura-print p{
+  font-size:14px;
+  margin:6px 0;
 }
 
-.input-estado{
-  flex:1.5;
-  padding:8px;
-  border-radius:8px;
-  border:1px solid #e5e7eb;
+@media print{
+
+  app-sidebar{
+    display:none !important;
+  }
+
+  .panel-header,
+  .form-card,
+  .table-card{
+    display:none !important;
+  }
+
+  .content{
+    margin:0;
+    padding:0;
+    background:white;
+  }
+
+  .no-print{
+    display:none !important;
+  }
+
 }

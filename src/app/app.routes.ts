@@ -7,6 +7,8 @@ import { ServiciosComponent } from './pages/servicios/servicios.component';
 import { MedidoresComponent } from './pages/medidores/medidores.component';
 import { LecturasComponent } from './pages/lecturas/lecturas.component';
 import { TarifasComponent } from './pages/tarifas/tarifas.component';
+import { FacturasComponent } from './pages/facturas/facturas.component';
+import { PagosComponent } from './pages/pagos/pagos.component';
 
 
 
@@ -19,5 +21,7 @@ export const routes: Routes = [
     {path: 'medidores', component: MedidoresComponent},
     {path: 'lecturas', component: LecturasComponent},
     {path: 'tarifas', component: TarifasComponent},
+    {path: 'facturas', component: FacturasComponent},
+    {path: 'pagos', component: PagosComponent},
 
 ];
