@@ -1,0 +1,55 @@
+<app-sidebar></app-sidebar>
+
+<div class="content">
+  <div class="panel-header">
+    <h2>Reporte de Ingresos del Día</h2>
+    <div class="panel-subtitle">Pagos registrados en la caja del día</div>
+  </div>
+
+  <div class="table-card">
+    <div class="section-title">Ingresos registrados</div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Recibo</th>
+          <th>Cliente</th>
+          <th>Tipo</th>
+          <th>Referencia</th>
+          <th>Fecha</th>
+          <th>Monto</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let i of ingresos">
+          <td>{{ i.recibo }}</td>
+          <td>{{ i.cliente }}</td>
+          <td>{{ i.tipo_pago }}</td>
+          <td>{{ i.referencia }}</td>
+          <td>{{ i.fecha }}</td>
+
+          <td>
+            {{ i.monto | currency: "HNL" : "symbol" : "1.2-2" }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pagos-layout">
+    <div class="form-card">
+      <div class="section-title">Total recaudado del día</div>
+
+      <h2 class="total-dia">
+        {{ calcularTotal() | currency: "HNL" : "symbol" : "1.2-2" }}
+      </h2>
+    </div>
+
+    <div class="form-card">
+      <div class="section-title">Ingresos por tipo de pago</div>
+
+      <canvas #grafico></canvas>
+    </div>
+  </div>
+</div>

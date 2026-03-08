@@ -1,0 +1,61 @@
+<app-sidebar></app-sidebar>
+
+<div class="content">
+  <div class="panel-header">
+    <h2>Reporte de Acuerdos de Pago</h2>
+    <div class="panel-subtitle">Seguimiento de acuerdos de pago activos</div>
+  </div>
+
+  <div class="table-card">
+    <div class="section-title">Acuerdos registrados</div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Cliente</th>
+          <th>Factura</th>
+          <th>Cuotas</th>
+          <th>Pagadas</th>
+          <th>Pendientes</th>
+          <th>Progreso</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let a of acuerdos">
+          <td>{{ a.cliente }}</td>
+          <td>{{ a.factura }}</td>
+          <td>{{ a.cuotas }}</td>
+          <td>{{ a.pagadas }}</td>
+          <td>{{ a.cuotas - a.pagadas }}</td>
+
+          <td>
+            <div class="barra">
+              <div
+                class="barra-progreso"
+                [style.width.%]="(a.pagadas / a.cuotas) * 100"
+              ></div>
+            </div>
+          </td>
+
+          <td>
+            <span
+              [ngClass]="
+                a.estado == 'Activo' ? 'estado-pendiente' : 'estado-pagada'
+              "
+            >
+              {{ a.estado }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="form-card">
+    <div class="section-title">Distribución de acuerdos</div>
+
+    <canvas #grafico></canvas>
+  </div>
+</div>

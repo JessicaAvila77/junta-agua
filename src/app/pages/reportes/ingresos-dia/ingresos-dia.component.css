@@ -429,8 +429,14 @@ color:#ef4444;
 font-weight:600;
 }
 
+.total-dia{
+color:#16a34a;
+font-size:28px;
+font-weight:700;
+}
+
 canvas{
-max-width:600px;
+max-width:500px;
 margin:auto;
 display:block;
 }

@@ -46,39 +46,19 @@ margin-bottom:15px;
 display:flex;
 gap:15px;
 margin-bottom:10px;
-align-items:flex-end;
+align-items:center;
 }
 
-
-/* CAMPOS CON ETIQUETA */
-
-.campo-form{
-display:flex;
-flex-direction:column;
-flex:1;
-}
-
-.campo-form label{
-font-size:13px;
-margin-bottom:5px;
-color:#374151;
-font-weight:500;
-}
-
-
-/* INPUTS */
 
 .form-row input,
 .form-row select{
+flex:1;
 padding:10px;
 border-radius:8px;
 border:1px solid #d1d5db;
 font-size:14px;
-background:white;
 }
 
-
-/* BOTONES */
 
 .btn-primary{
 background:#1e9c98;
@@ -93,6 +73,7 @@ cursor:pointer;
 background:#178a87;
 }
 
+
 .btn-edit{
 background:#3b82f6;
 color:white;
@@ -102,12 +83,6 @@ border-radius:6px;
 cursor:pointer;
 }
 
-.btn-edit:hover{
-background:#2563eb;
-}
-
-
-/* TABLA */
 
 table{
 width:100%;

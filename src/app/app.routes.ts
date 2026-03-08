@@ -17,6 +17,8 @@ import { CooperantesComponent } from './pages/proyectos/cooperantes/cooperantes.
 import { PresupuestoComponent } from './pages/proyectos/presupuesto/presupuesto.component';
 import { FacturasVencidasComponent } from './pages/reportes/facturas-vencidas/facturas-vencidas.component';
 import { ServiciosSuspendidosComponent } from './pages/reportes/servicios-suspendidos/servicios-suspendidos.component';
+import { IngresosDiaComponent } from './pages/reportes/ingresos-dia/ingresos-dia.component';
+import { AcuerdosPagoComponent } from './pages/reportes/acuerdos-pago/acuerdos-pago.component';
 
 
 export const routes: Routes = [
@@ -38,5 +40,7 @@ export const routes: Routes = [
   { path: 'presupuesto', component: PresupuestoComponent },
   { path: 'facturas-vencidas', component: FacturasVencidasComponent},
   { path: 'servicios-suspendidos', component: ServiciosSuspendidosComponent},
+  { path: 'ingresos-dia', component: IngresosDiaComponent},
+  { path: 'acuerdos-pago', component: AcuerdosPagoComponent},
 
 ];
