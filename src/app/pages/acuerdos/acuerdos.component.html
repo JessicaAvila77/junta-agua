@@ -1,0 +1,73 @@
+<app-sidebar></app-sidebar>
+
+<div class="content">
+  <div class="panel-header">
+    <h2>Acuerdos de Pago</h2>
+    <div class="panel-subtitle">Administración de acuerdos de pago</div>
+  </div>
+
+  <div class="table-card">
+    <div class="table-header">
+      <h3>Acuerdos registrados</h3>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Cliente</th>
+            <th>Factura</th>
+            <th>Servicio</th>
+            <th>Cuotas</th>
+            <th>Pagadas</th>
+            <th>Estado</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let a of acuerdos">
+            <td>{{ a.cliente }}</td>
+            <td>{{ a.codigo_factura }}</td>
+            <td>{{ a.codigo_servicio }}</td>
+            <td>{{ a.cuotas }}</td>
+            <td>{{ a.pagadas }}</td>
+
+            <td
+              [ngClass]="{
+                'estado-pagada': a.estado === 'Finalizado',
+                'estado-pendiente': a.estado === 'Activo',
+              }"
+            >
+              {{ a.estado }}
+            </td>
+
+            <td>
+              <button class="btn-edit" (click)="verAcuerdo(a)">Ver</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="form-card" *ngIf="acuerdoSeleccionado">
+    <div class="section-title">Detalle del acuerdo</div>
+
+    <p><b>Cliente:</b> {{ acuerdoSeleccionado.cliente }}</p>
+
+    <p><b>Factura:</b> {{ acuerdoSeleccionado.codigo_factura }}</p>
+
+    <p><b>Servicio:</b> {{ acuerdoSeleccionado.codigo_servicio }}</p>
+
+    <p><b>Cuotas totales:</b> {{ acuerdoSeleccionado.cuotas }}</p>
+
+    <p><b>Cuotas pagadas:</b> {{ acuerdoSeleccionado.pagadas }}</p>
+
+    <p><b>Estado:</b> {{ acuerdoSeleccionado.estado }}</p>
+
+    <br />
+
+    <button class="btn-secondary" (click)="cerrarDetalle()">Cerrar</button>
+  </div>
+</div>

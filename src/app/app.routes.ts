@@ -10,6 +10,8 @@ import { TarifasComponent } from './pages/tarifas/tarifas.component';
 import { FacturasComponent } from './pages/facturas/facturas.component';
 import { PagosComponent } from './pages/pagos/pagos.component';
 import { CajaDiaComponent } from './pages/caja-dia/caja-dia.component';
+import { AcuerdosComponent } from './pages/acuerdos/acuerdos.component';
+import { SuspensionServicioComponent } from './pages/suspension-servicio/suspension-servicio.component';
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -23,4 +25,6 @@ export const routes: Routes = [
   { path: 'facturas', component: FacturasComponent },
   { path: 'pagos', component: PagosComponent },
   { path: 'caja-dia', component: CajaDiaComponent },
+  { path: 'acuerdos', component: AcuerdosComponent },
+  { path: 'suspension-servicio', component: SuspensionServicioComponent },
 ];

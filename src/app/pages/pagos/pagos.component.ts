@@ -230,4 +230,12 @@ ${contenido}
   getCuotasPagadas() {
     return this.cuotasFactura.filter((c) => c.estado === 'Pagada').length;
   }
+
+  getCuotasFactura(idFactura: number) {
+    const cuotasFactura = this.cuotas.filter((c) => c.id_factura === idFactura);
+
+    const pagadas = cuotasFactura.filter((c) => c.estado === 'Pagada').length;
+
+    return pagadas + '/' + cuotasFactura.length;
+  }
 }

@@ -186,6 +186,10 @@
             }"
           >
             {{ esVencida(f) ? "Vencida" : f.estado }}
+
+            <span *ngIf="acuerdosGenerados.includes(f.id_factura)">
+              ({{ getCuotasFactura(f.id_factura) }})
+            </span>
           </td>
 
           <td>

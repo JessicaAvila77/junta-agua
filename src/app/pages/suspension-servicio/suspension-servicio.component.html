@@ -1,0 +1,165 @@
+<app-sidebar></app-sidebar>
+
+<div class="content">
+  <div class="panel-header">
+    <h2>Suspensión de Servicio</h2>
+    <div class="panel-subtitle">Gestión de mora, suspensión y reconexión</div>
+  </div>
+
+  <!-- SERVICIOS CON MORA -->
+
+  <div class="table-card">
+    <div class="section-title">Servicios con mora y sin acuerdos de pago</div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Cliente</th>
+          <th>Facturas vencidas</th>
+          <th>Deuda</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let m of serviciosMorosos">
+          <td>{{ m.codigo_cliente }}</td>
+          <td>{{ m.cliente }}</td>
+          <td class="motivo-mora">{{ m.facturas_vencidas }}</td>
+          <td>L. {{ m.deuda }}</td>
+
+          <td>
+            <button class="btn-primary" (click)="suspenderPorMora(m)">
+              Suspender
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SUSPENSION MANUAL -->
+
+  <div class="form-card">
+    <div class="section-title">Suspensión manual</div>
+
+    <div class="form-row">
+      <input
+        type="text"
+        placeholder="Código de cliente"
+        [(ngModel)]="busqueda"
+      />
+
+      <button class="btn-primary" (click)="buscarServicio()">Buscar</button>
+    </div>
+  </div>
+
+  <!-- SERVICIO ENCONTRADO -->
+
+  <div *ngIf="servicioSeleccionado" class="form-card">
+    <div class="section-title">Servicio encontrado</div>
+
+    <p><strong>Código:</strong> {{ servicioSeleccionado.codigo_cliente }}</p>
+    <p><strong>Cliente:</strong> {{ servicioSeleccionado.nombre_cliente }}</p>
+    <p>
+      <strong>Dirección:</strong> {{ servicioSeleccionado.direccion_servicio }}
+    </p>
+
+    <div class="form-row">
+      <div class="campo-form">
+        <label>Fecha de suspensión</label>
+
+        <input type="date" [(ngModel)]="fechaSuspension" />
+      </div>
+
+      <div class="campo-form">
+        <label>Motivo</label>
+
+        <select [(ngModel)]="motivo">
+          <option value="">Seleccionar motivo</option>
+          <option value="Mantenimiento">Mantenimiento</option>
+          <option value="Avería">Avería</option>
+          <option value="Administrativo">Administrativo</option>
+        </select>
+      </div>
+
+      <button class="btn-primary" (click)="suspenderServicio()">
+        Suspender Servicio
+      </button>
+    </div>
+  </div>
+
+  <!-- HISTORIAL DE SUSPENSIONES -->
+
+  <div class="table-card">
+    <div class="section-title">Historial de suspensiones</div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Cliente</th>
+          <th>Fecha suspensión</th>
+          <th>Fecha reconexión</th>
+          <th>Motivo</th>
+          <th>Estado</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let s of suspensiones">
+          <td>{{ s.codigo_cliente }}</td>
+          <td>{{ s.nombre_cliente }}</td>
+
+          <td>{{ s.fecha_suspension }}</td>
+
+          <td>
+            <span *ngIf="s.fecha_reconexion">
+              {{ s.fecha_reconexion }}
+            </span>
+
+            <span *ngIf="!s.fecha_reconexion"> — </span>
+          </td>
+
+          <td>
+            <span *ngIf="s.motivo == 'Mora'" class="motivo-mora">Mora</span>
+            <span
+              *ngIf="s.motivo == 'Mantenimiento'"
+              class="motivo-mantenimiento"
+              >Mantenimiento</span
+            >
+            <span *ngIf="s.motivo == 'Avería'" class="motivo-mantenimiento"
+              >Avería</span
+            >
+            <span
+              *ngIf="s.motivo == 'Administrativo'"
+              class="motivo-administrativo"
+              >Administrativo</span
+            >
+          </td>
+
+          <td>
+            <span *ngIf="s.estado == 'Suspendido'" class="estado-suspendido"
+              >Suspendido</span
+            >
+            <span *ngIf="s.estado == 'Reconectado'" class="estado-reconectado"
+              >Reconectado</span
+            >
+          </td>
+
+          <td>
+            <button
+              *ngIf="s.estado == 'Suspendido'"
+              class="btn-edit"
+              (click)="reconectarServicio(s)"
+            >
+              Reconectar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

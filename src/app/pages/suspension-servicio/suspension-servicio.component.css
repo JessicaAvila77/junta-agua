@@ -1,0 +1,161 @@
+.content{
+margin-left:240px;
+padding:30px;
+background:#f5f6f8;
+min-height:100vh;
+}
+
+
+.panel-header{
+background:#1e9c98;
+color:white;
+padding:20px;
+border-radius:12px;
+margin-bottom:20px;
+}
+
+.panel-header h2{
+margin:0;
+font-weight:500;
+}
+
+.panel-subtitle{
+font-size:14px;
+opacity:0.9;
+}
+
+
+.form-card,
+.table-card{
+background:white;
+border-radius:14px;
+padding:25px;
+border:1px solid #e5e7eb;
+margin-bottom:25px;
+}
+
+
+.section-title{
+font-size:15px;
+font-weight:500;
+margin-bottom:15px;
+}
+
+
+.form-row{
+display:flex;
+gap:15px;
+margin-bottom:10px;
+align-items:flex-end;
+}
+
+
+/* CAMPOS CON ETIQUETA */
+
+.campo-form{
+display:flex;
+flex-direction:column;
+flex:1;
+}
+
+.campo-form label{
+font-size:13px;
+margin-bottom:5px;
+color:#374151;
+font-weight:500;
+}
+
+
+/* INPUTS */
+
+.form-row input,
+.form-row select{
+padding:10px;
+border-radius:8px;
+border:1px solid #d1d5db;
+font-size:14px;
+background:white;
+}
+
+
+/* BOTONES */
+
+.btn-primary{
+background:#1e9c98;
+color:white;
+border:none;
+padding:10px 18px;
+border-radius:8px;
+cursor:pointer;
+}
+
+.btn-primary:hover{
+background:#178a87;
+}
+
+.btn-edit{
+background:#3b82f6;
+color:white;
+border:none;
+padding:6px 10px;
+border-radius:6px;
+cursor:pointer;
+}
+
+.btn-edit:hover{
+background:#2563eb;
+}
+
+
+/* TABLA */
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+thead th{
+text-align:left;
+padding:10px;
+border-bottom:2px solid #e5e7eb;
+}
+
+td{
+padding:10px;
+border-bottom:1px solid #f1f1f1;
+}
+
+tbody tr:hover{
+background:#f9fafb;
+}
+
+
+/* COLORES MOTIVOS */
+
+.motivo-mora{
+color:#ef4444;
+font-weight:600;
+}
+
+.motivo-mantenimiento{
+color:#f59e0b;
+font-weight:600;
+}
+
+.motivo-administrativo{
+color:#3b82f6;
+font-weight:600;
+}
+
+
+/* ESTADOS */
+
+.estado-suspendido{
+color:#ef4444;
+font-weight:600;
+}
+
+.estado-reconectado{
+color:#16a34a;
+font-weight:600;
+}
