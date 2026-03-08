@@ -1,0 +1,141 @@
+<app-sidebar></app-sidebar>
+
+<div class="content">
+  <div class="panel-header">
+    <h2>Presupuesto del Proyecto</h2>
+    <div class="panel-subtitle">Planificación financiera del proyecto</div>
+  </div>
+
+  <!-- DATOS GENERALES DEL PRESUPUESTO -->
+
+  <div class="form-card">
+    <div class="section-title">Datos del presupuesto</div>
+
+    <div class="form-row">
+      <div class="campo-form">
+        <label>Proyecto</label>
+
+        <select [(ngModel)]="presupuesto.id_proyecto">
+          <option value="0">Seleccionar proyecto</option>
+
+          <option *ngFor="let p of proyectos" [value]="p.id_proyecto">
+            {{ p.id_proyecto }} - {{ p.nombre_proyecto }}
+          </option>
+        </select>
+      </div>
+
+      <div class="campo-form">
+        <label>Año</label>
+
+        <input type="number" [(ngModel)]="presupuesto.anio" />
+      </div>
+
+      <div class="campo-form">
+        <label>Fecha aprobación</label>
+
+        <input type="date" [(ngModel)]="presupuesto.fecha_aprobacion" />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="campo-form">
+        <label>Estado</label>
+
+        <select [(ngModel)]="presupuesto.estado">
+          <option value="Activo">Activo</option>
+          <option value="Aprobado">Aprobado</option>
+        </select>
+      </div>
+
+      <button class="btn-primary" (click)="crearPresupuesto()">
+        Crear Presupuesto
+      </button>
+    </div>
+  </div>
+
+  <!-- DETALLE DEL PRESUPUESTO -->
+
+  <div *ngIf="presupuestoCreado">
+    <div class="form-card">
+      <div class="section-title">Detalle del presupuesto</div>
+
+      <div class="form-row">
+        <div class="campo-form">
+          <label>Descripción</label>
+          <input type="text" [(ngModel)]="nuevoDetalle.descripcion" />
+        </div>
+
+        <div class="campo-form">
+          <label>Cantidad</label>
+          <input type="number" [(ngModel)]="nuevoDetalle.cantidad" />
+        </div>
+
+        <div class="campo-form">
+          <label>Unidad</label>
+          <input type="text" [(ngModel)]="nuevoDetalle.unidad_medida" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="campo-form">
+          <label>Precio unitario</label>
+          <input type="number" [(ngModel)]="nuevoDetalle.precio_unitario" />
+        </div>
+
+        <div class="campo-form">
+          <label>Observación</label>
+          <input type="text" [(ngModel)]="nuevoDetalle.observacion" />
+        </div>
+
+        <button class="btn-primary" (click)="guardarDetalle()">Guardar</button>
+      </div>
+    </div>
+
+    <div class="table-card">
+      <div class="section-title">Partidas presupuestarias</div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Descripción</th>
+            <th>Cantidad</th>
+            <th>Unidad</th>
+            <th>Precio</th>
+            <th>Total</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let d of detalles">
+            <td>{{ d.id }}</td>
+            <td>{{ d.descripcion }}</td>
+            <td>{{ d.cantidad }}</td>
+            <td>{{ d.unidad_medida }}</td>
+            <td>
+              {{ d.precio_unitario | currency: "HNL" : "symbol" : "1.2-2" }}
+            </td>
+            <td>{{ d.total | currency: "HNL" : "symbol" : "1.2-2" }}</td>
+
+            <td>
+              <button class="btn-edit" (click)="editarDetalle(d)">
+                Editar
+              </button>
+
+              <button class="btn-delete" (click)="eliminarDetalle(d.id)">
+                Eliminar
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="form-card">
+      <div class="section-title">Total del presupuesto</div>
+
+      <h3>{{calcularTotalProyecto() | currency:'HNL':'symbol':'1.2-2'}}</h3>
+    </div>
+  </div>
+</div>

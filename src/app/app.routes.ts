@@ -12,6 +12,9 @@ import { PagosComponent } from './pages/pagos/pagos.component';
 import { CajaDiaComponent } from './pages/caja-dia/caja-dia.component';
 import { AcuerdosComponent } from './pages/acuerdos/acuerdos.component';
 import { SuspensionServicioComponent } from './pages/suspension-servicio/suspension-servicio.component';
+import { PerfilProyectoComponent } from './pages/proyectos/perfil-proyecto/perfil-proyecto.component';
+import { CooperantesComponent } from './pages/proyectos/cooperantes/cooperantes.component';
+import { PresupuestoComponent } from './pages/proyectos/presupuesto/presupuesto.component';
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -27,4 +30,8 @@ export const routes: Routes = [
   { path: 'caja-dia', component: CajaDiaComponent },
   { path: 'acuerdos', component: AcuerdosComponent },
   { path: 'suspension-servicio', component: SuspensionServicioComponent },
+  { path: 'perfil-proyecto', component: PerfilProyectoComponent },
+  { path: 'cooperantes', component: CooperantesComponent },
+  { path: 'presupuesto', component: PresupuestoComponent },
+
 ];

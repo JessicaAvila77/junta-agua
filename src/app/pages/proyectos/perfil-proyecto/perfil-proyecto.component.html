@@ -1,0 +1,134 @@
+<app-sidebar></app-sidebar>
+
+<div class="content">
+  <div class="panel-header">
+    <h2>Perfil del Proyecto</h2>
+    <div class="panel-subtitle">Gestión de proyectos comunitarios</div>
+  </div>
+
+  <div class="form-card">
+    <div class="section-title">Registro de Proyecto</div>
+
+    <div class="form-row">
+      <div class="campo-form">
+        <label>Nombre del proyecto</label>
+        <input type="text" [(ngModel)]="nuevoProyecto.nombre_proyecto" />
+      </div>
+
+      <div class="campo-form">
+        <label>Tipo de proyecto</label>
+        <input type="text" [(ngModel)]="nuevoProyecto.tipo_proyecto" />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="campo-form">
+        <label>Descripción</label>
+        <input type="text" [(ngModel)]="nuevoProyecto.descripcion" />
+      </div>
+
+      <div class="campo-form">
+        <label>Justificación</label>
+        <input type="text" [(ngModel)]="nuevoProyecto.justificacion" />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="campo-form">
+        <label>Beneficiarios hombres</label>
+        <input type="number" [(ngModel)]="nuevoProyecto.benef_hombres" />
+      </div>
+
+      <div class="campo-form">
+        <label>Beneficiarias mujeres</label>
+        <input type="number" [(ngModel)]="nuevoProyecto.benef_mujeres" />
+      </div>
+
+      <div class="campo-form">
+        <label>Niños beneficiarios</label>
+        <input type="number" [(ngModel)]="nuevoProyecto.benef_ninos" />
+      </div>
+
+      <div class="campo-form">
+        <label>Familias beneficiadas</label>
+        <input type="number" [(ngModel)]="nuevoProyecto.benef_familias" />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="campo-form">
+        <label>Fecha inicio</label>
+        <input type="date" [(ngModel)]="nuevoProyecto.fecha_inicio" />
+      </div>
+
+      <div class="campo-form">
+        <label>Fecha fin</label>
+        <input type="date" [(ngModel)]="nuevoProyecto.fecha_fin" />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="campo-form">
+        <label>Estado</label>
+
+        <select [(ngModel)]="nuevoProyecto.estado">
+          <option value="Activo">Activo</option>
+          <option value="Finalizado">Finalizado</option>
+        </select>
+      </div>
+
+      <button class="btn-primary" (click)="guardarProyecto()">
+        Guardar Proyecto
+      </button>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <div class="section-title">Proyectos registrados</div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Proyecto</th>
+          <th>Tipo</th>
+          <th>Inicio</th>
+          <th>Fin</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let p of proyectos">
+          <td>{{ p.id_proyecto }}</td>
+          <td>{{ p.nombre_proyecto }}</td>
+          <td>{{ p.tipo_proyecto }}</td>
+          <td>{{ p.fecha_inicio }}</td>
+          <td>{{ p.fecha_fin }}</td>
+
+          <td>
+            <span *ngIf="p.estado == 'Activo'" class="estado-activo">
+              Activo
+            </span>
+
+            <span *ngIf="p.estado == 'Finalizado'" class="estado-finalizado">
+              Finalizado
+            </span>
+          </td>
+
+          <td>
+            <button class="btn-edit" (click)="editarProyecto(p)">Editar</button>
+
+            <button
+              class="btn-delete"
+              (click)="eliminarProyecto(p.id_proyecto)"
+            >
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

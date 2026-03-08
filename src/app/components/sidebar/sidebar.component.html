@@ -1,16 +1,12 @@
 <div class="sidebar">
-
   <div class="sidebar-top">
-
     <h1 class="sidebar-title">
-      Junta de Agua <br>
+      Junta de Agua <br />
       Orocuina
     </h1>
 
     <!-- Dashboard -->
-    <a routerLink="/dashboard" class="main-link">
-      🏠 Dashboard
-    </a>
+    <a routerLink="/dashboard" class="main-link"> 🏠 Dashboard </a>
 
     <!-- Gestión de Miembros -->
     <div class="menu-group">
@@ -56,7 +52,7 @@
         📁 Proyectos
       </div>
       <div class="submenu" [class.open]="openMenu === 'proyectos'">
-        <a routerLink="/proyectos">Perfil del Proyecto</a>
+        <a routerLink="/perfil-proyecto">Perfil del Proyecto</a>
         <a routerLink="/cooperantes">Cooperantes</a>
         <a routerLink="/presupuesto">Presupuesto</a>
       </div>
@@ -64,20 +60,37 @@
 
     <!-- Activos -->
     <div class="menu-group">
-      <div class="menu-title" (click)="toggleMenu('activos')">
-        🛠 Activos
-      </div>
+      <div class="menu-title" (click)="toggleMenu('activos')">🛠 Activos</div>
       <div class="submenu" [class.open]="openMenu === 'activos'">
         <a routerLink="/activos">Registro</a>
         <a routerLink="/mantenimientos">Mantenimientos</a>
       </div>
     </div>
 
+    <!-- Reportes -->
+    <div class="menu-group">
+      <div class="menu-title" (click)="toggleMenu('reportes')">📊 Reportes</div>
+
+      <div class="submenu" [class.open]="openMenu === 'reportes'">
+        <a routerLink="/reporte-facturas-vencidas"> Facturas vencidas </a>
+
+        <a routerLink="/reporte-servicios-suspendidos">
+          Servicios suspendidos
+        </a>
+
+        <a routerLink="/reporte-ingresos-dia"> Ingresos del día </a>
+
+        <a routerLink="/reporte-acuerdos-pago"> Acuerdos de pago </a>
+
+        <a routerLink="/reporte-presupuesto-proyectos">
+          Presupuesto de proyectos
+        </a>
+      </div>
+    </div>
   </div>
 
   <div class="sidebar-bottom">
-    <hr class="divider">
+    <hr class="divider" />
     <a routerLink="/" class="logout">🚪 Cerrar sesión</a>
   </div>
-
 </div>

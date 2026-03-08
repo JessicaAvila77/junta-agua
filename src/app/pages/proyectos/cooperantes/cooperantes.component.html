@@ -1,0 +1,105 @@
+<app-sidebar></app-sidebar>
+
+<div class="content">
+  <div class="panel-header">
+    <h2>Cooperantes</h2>
+    <div class="panel-subtitle">Registro de cooperantes del proyecto</div>
+  </div>
+
+  <div class="form-card">
+    <div class="section-title">Registro de Cooperante</div>
+
+    <div class="form-row">
+      <div class="campo-form">
+        <label>Nombre</label>
+        <input type="text" [(ngModel)]="nuevoCooperante.nombre" />
+      </div>
+
+      <div class="campo-form">
+        <label>Tipo de cooperante</label>
+        <input type="text" [(ngModel)]="nuevoCooperante.tipo_cooperante" />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="campo-form">
+        <label>Teléfono</label>
+        <input type="text" [(ngModel)]="nuevoCooperante.telefono" />
+      </div>
+
+      <div class="campo-form">
+        <label>Correo</label>
+        <input type="text" [(ngModel)]="nuevoCooperante.correo" />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="campo-form">
+        <label>Dirección</label>
+        <input type="text" [(ngModel)]="nuevoCooperante.direccion" />
+      </div>
+
+      <div class="campo-form">
+        <label>Estado</label>
+
+        <select [(ngModel)]="nuevoCooperante.estado">
+          <option value="Activo">Activo</option>
+          <option value="Inactivo">Inactivo</option>
+        </select>
+      </div>
+
+      <button class="btn-primary" (click)="guardarCooperante()">Guardar</button>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <div class="section-title">Cooperantes registrados</div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Tipo</th>
+          <th>Teléfono</th>
+          <th>Correo</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let c of cooperantes">
+          <td>{{ c.id_cooperante }}</td>
+          <td>{{ c.nombre }}</td>
+          <td>{{ c.tipo_cooperante }}</td>
+          <td>{{ c.telefono }}</td>
+          <td>{{ c.correo }}</td>
+
+          <td>
+            <span *ngIf="c.estado == 'Activo'" class="estado-activo">
+              Activo
+            </span>
+
+            <span *ngIf="c.estado == 'Inactivo'" class="estado-finalizado">
+              Inactivo
+            </span>
+          </td>
+
+          <td>
+            <button class="btn-edit" (click)="editarCooperante(c)">
+              Editar
+            </button>
+
+            <button
+              class="btn-delete"
+              (click)="eliminarCooperante(c.id_cooperante)"
+            >
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
