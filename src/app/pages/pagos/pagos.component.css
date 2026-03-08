@@ -1,9 +1,14 @@
+/* CONTENEDOR PRINCIPAL */
+
 .content{
 margin-left:240px;
 padding:30px;
 background:#f5f6f8;
 min-height:100vh;
 }
+
+
+/* ENCABEZADO */
 
 .panel-header{
 background:#1e9c98;
@@ -12,6 +17,19 @@ padding:20px;
 border-radius:12px;
 margin-bottom:20px;
 }
+
+.panel-header h2{
+margin:0;
+font-weight:500;
+}
+
+.panel-subtitle{
+font-size:14px;
+opacity:0.9;
+}
+
+
+/* TARJETAS */
 
 .form-card,
 .table-card{
@@ -22,17 +40,34 @@ border:1px solid #e5e7eb;
 margin-bottom:25px;
 }
 
+
+/* TITULOS */
+
+.section-title{
+font-size:15px;
+font-weight:500;
+margin-bottom:15px;
+}
+
+
+/* FILAS FORMULARIO */
+
 .form-row{
 display:flex;
 gap:15px;
+margin-bottom:10px;
 }
 
-input{
+.form-row input{
+flex:1;
 padding:10px;
 border-radius:8px;
 border:1px solid #d1d5db;
-flex:1;
+font-size:14px;
 }
+
+
+/* BOTONES */
 
 .btn-primary{
 background:#1e9c98;
@@ -43,24 +78,70 @@ border-radius:8px;
 cursor:pointer;
 }
 
+.btn-primary:hover{
+background:#178a87;
+}
+
 .btn-edit{
 background:#3b82f6;
 color:white;
 border:none;
-padding:5px 10px;
+padding:6px 10px;
 border-radius:6px;
 cursor:pointer;
 }
+
+
+/* LAYOUT FACTURA + RECIBO */
+
+.pagos-layout{
+display:flex;
+gap:20px;
+align-items:flex-start;
+margin-bottom:25px;
+}
+
+.pagos-layout .form-card{
+flex:1;
+}
+
+.recibo-card{
+flex:1;
+background:white;
+border-radius:12px;
+padding:40px;
+border:1px solid #e5e7eb;
+text-align:center;
+max-width:500px;
+margin:auto;
+}
+
+.codigo{
+font-weight:bold;
+margin-bottom:15px;
+}
+
+
+/* TABLA */
 
 table{
 width:100%;
 border-collapse:collapse;
 }
 
-th,td{
+thead th{
+text-align:left;
 padding:10px;
-border-bottom:1px solid #eee;
+border-bottom:2px solid #e5e7eb;
 }
+
+td{
+padding:10px;
+border-bottom:1px solid #f1f1f1;
+}
+
+
+/* ESTADOS */
 
 .estado-pagada{
 color:#16a34a;
@@ -76,3 +157,15 @@ font-weight:600;
 color:#ef4444;
 font-weight:600;
 }
+
+
+/* CONFIGURACION DE PAGINA */
+
+@page{
+size:letter;
+margin:2cm;
+}
+
+
+/* IMPRESION */
+

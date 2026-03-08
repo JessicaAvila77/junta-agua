@@ -1,12 +1,14 @@
 <app-sidebar></app-sidebar>
 
 <div class="content">
+  <!-- ENCABEZADO -->
+
   <div class="panel-header">
     <h2>Pagos</h2>
     <div class="panel-subtitle">Registro de pagos de facturas</div>
   </div>
 
-  <!-- BUSCAR -->
+  <!-- BUSQUEDA -->
 
   <div class="form-card">
     <div class="section-title">Buscar cliente o código servicio</div>
@@ -22,45 +24,87 @@
     </div>
   </div>
 
-  <!-- FACTURA SELECCIONADA -->
+  <!-- FACTURA Y RECIBO -->
 
-  <div class="form-card" *ngIf="facturaSeleccionada">
-    <div class="section-title">Factura seleccionada</div>
+  <div class="pagos-layout">
+    <!-- FACTURA SELECCIONADA -->
 
-    <p><b>Factura:</b> {{ facturaSeleccionada.codigo_factura }}</p>
-    <p><b>Cliente:</b> {{ facturaSeleccionada.nombre_cliente }}</p>
-    <p><b>Servicio:</b> {{ facturaSeleccionada.codigo_servicio }}</p>
-    <p><b>Periodo:</b> {{ facturaSeleccionada.periodo }}</p>
-    <p><b>Total:</b> L {{ facturaSeleccionada.monto_total }}</p>
+    <div class="form-card" *ngIf="facturaSeleccionada">
+      <div class="section-title">Factura seleccionada</div>
 
-    <button class="btn-primary" (click)="registrarPago()">
-      Registrar Pago
-    </button>
+      <p><b>Factura:</b> {{ facturaSeleccionada.codigo_factura }}</p>
+
+      <p><b>Cliente:</b> {{ facturaSeleccionada.nombre_cliente }}</p>
+
+      <p><b>Servicio:</b> {{ facturaSeleccionada.codigo_servicio }}</p>
+
+      <p><b>Periodo:</b> {{ facturaSeleccionada.periodo }}</p>
+
+      <p><b>Total:</b> L {{ facturaSeleccionada.monto_total }}</p>
+
+      <br />
+
+      <button class="btn-primary" (click)="registrarPago()">
+        Registrar Pago
+      </button>
+    </div>
+
+    <!-- RECIBO -->
+
+    <div id="recibo" class="recibo-card" *ngIf="pagos.length > 0">
+      <h2>JUNTA ADMINISTRADORA DE AGUA</h2>
+
+      <h3>Orocuina, Choluteca</h3>
+
+      <br />
+
+      <h3>Recibo de pago</h3>
+
+      <p class="codigo">Recibo: {{ pagos[pagos.length - 1].numero_recibo }}</p>
+
+      <p>
+        Fecha pago:
+        <strong>{{ pagos[pagos.length - 1].fecha_pago }}</strong>
+      </p>
+
+      <hr />
+
+      <p>
+        Factura:
+        <strong>{{ pagos[pagos.length - 1].codigo_factura }}</strong>
+      </p>
+
+      <p>
+        Cliente:
+        <strong>{{ pagos[pagos.length - 1].nombre_cliente }}</strong>
+      </p>
+
+      <p>
+        Servicio:
+        <strong>{{ pagos[pagos.length - 1].codigo_servicio }}</strong>
+      </p>
+
+      <p>
+        Periodo:
+        <strong>{{ pagos[pagos.length - 1].periodo }}</strong>
+      </p>
+
+      <hr />
+
+      <p>
+        Total pagado:
+        <strong>L {{ pagos[pagos.length - 1].monto_pagado }}</strong>
+      </p>
+
+      <br />
+
+      <button class="btn-primary no-print" (click)="imprimir()">
+        Imprimir recibo
+      </button>
+    </div>
   </div>
 
-  <!-- RECIBO -->
-
-  <div class="factura-print" *ngIf="pagos.length > 0">
-    <h3>Recibo de pago</h3>
-
-    <p><b>Recibo:</b> {{ pagos[pagos.length - 1].numero_recibo }}</p>
-    <p><b>Fecha pago:</b> {{ pagos[pagos.length - 1].fecha_pago }}</p>
-
-    <hr />
-
-    <p><b>Factura:</b> {{ pagos[pagos.length - 1].codigo_factura }}</p>
-    <p><b>Cliente:</b> {{ pagos[pagos.length - 1].nombre_cliente }}</p>
-    <p><b>Servicio:</b> {{ pagos[pagos.length - 1].codigo_servicio }}</p>
-    <p><b>Periodo:</b> {{ pagos[pagos.length - 1].periodo }}</p>
-
-    <hr />
-
-    <p><b>Total pagado:</b> L {{ pagos[pagos.length - 1].monto_pagado }}</p>
-
-    <button class="btn-primary no-print" (click)="imprimir()">Imprimir</button>
-  </div>
-
-  <!-- HISTORIAL -->
+  <!-- HISTORIAL DEL CLIENTE -->
 
   <div class="table-card" *ngIf="facturasCliente.length > 0">
     <div class="table-header">
@@ -82,8 +126,11 @@
       <tbody>
         <tr *ngFor="let f of facturasCliente">
           <td>{{ f.codigo_factura }}</td>
+
           <td>{{ f.codigo_servicio }}</td>
+
           <td>{{ f.periodo }}</td>
+
           <td>L {{ f.monto_total }}</td>
 
           <td
