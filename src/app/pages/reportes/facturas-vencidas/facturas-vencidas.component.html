@@ -1,0 +1,50 @@
+<app-sidebar></app-sidebar>
+
+<div class="content">
+  <div class="panel-header">
+    <h2>Reporte de Facturas Vencidas</h2>
+    <div class="panel-subtitle">Clientes con mora en el servicio de agua</div>
+  </div>
+
+  <div class="table-card">
+    <div class="section-title">Facturas vencidas</div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Cliente</th>
+          <th>Periodo</th>
+          <th>Fecha vencimiento</th>
+          <th>Días mora</th>
+          <th>Monto</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let f of facturas">
+          <td>{{ f.codigo_cliente }}</td>
+          <td>{{ f.cliente }}</td>
+          <td>{{ f.periodo }}</td>
+          <td>{{ f.fecha_vencimiento }}</td>
+
+          <td class="estado-vencida">
+            {{ f.dias_mora }}
+          </td>
+
+          <td>
+            {{ f.monto | currency: "HNL" : "symbol" : "1.2-2" }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="form-card">
+    <div class="section-title">Total en mora</div>
+
+    <h3>
+      {{ calcularTotal() | currency: "HNL" : "symbol" : "1.2-2" }}
+    </h3>
+  </div>
+</div>

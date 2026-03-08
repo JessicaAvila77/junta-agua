@@ -15,6 +15,9 @@ import { SuspensionServicioComponent } from './pages/suspension-servicio/suspens
 import { PerfilProyectoComponent } from './pages/proyectos/perfil-proyecto/perfil-proyecto.component';
 import { CooperantesComponent } from './pages/proyectos/cooperantes/cooperantes.component';
 import { PresupuestoComponent } from './pages/proyectos/presupuesto/presupuesto.component';
+import { FacturasVencidasComponent } from './pages/reportes/facturas-vencidas/facturas-vencidas.component';
+import { ServiciosSuspendidosComponent } from './pages/reportes/servicios-suspendidos/servicios-suspendidos.component';
+
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -33,5 +36,7 @@ export const routes: Routes = [
   { path: 'perfil-proyecto', component: PerfilProyectoComponent },
   { path: 'cooperantes', component: CooperantesComponent },
   { path: 'presupuesto', component: PresupuestoComponent },
+  { path: 'facturas-vencidas', component: FacturasVencidasComponent},
+  { path: 'servicios-suspendidos', component: ServiciosSuspendidosComponent},
 
 ];
