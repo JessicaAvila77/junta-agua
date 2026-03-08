@@ -1,29 +1,23 @@
-
 <div class="login-container">
-
   <div class="login-card">
+    <div class="logo-area">
+      <!-- LOGO -->
+      <img src="assets/logo-junta.png" class="logo" />
+    </div>
 
-    <h2>Sistema Junta de Agua</h2>
+    <h1>Sistema Junta de Agua Comunidad de Orocuina</h1>
     <p class="subtitle">Acceso administrativo</p>
 
-    <form>
+    <div class="campo">
+      <label>Usuario</label>
+      <input type="text" placeholder="Ingrese su usuario" />
+    </div>
 
-      <div class="form-group">
-        <label>Usuario</label>
-        <input type="text" placeholder="Ingrese su usuario">
-      </div>
+    <div class="campo">
+      <label>Contraseña</label>
+      <input type="password" placeholder="Ingrese su contraseña" />
+    </div>
 
-      <div class="form-group">
-        <label>Contraseña</label>
-        <input type="password" placeholder="Ingrese su contraseña">
-      </div>
-
-      <button type="button" class="btn-login" (click)="login()">
-  Iniciar sesión
-</button>
-
-    </form>
-
+    <button class="btn-login" (click)="login()">Iniciar sesión</button>
   </div>
-
 </div>

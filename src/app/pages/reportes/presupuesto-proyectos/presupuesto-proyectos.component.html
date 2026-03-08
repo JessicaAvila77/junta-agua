@@ -1,0 +1,74 @@
+<app-sidebar></app-sidebar>
+
+<div class="content">
+  <div class="panel-header">
+    <h2>Reporte de Presupuesto de Proyectos</h2>
+    <div class="panel-subtitle">
+      Control de presupuesto de proyectos comunitarios
+    </div>
+  </div>
+
+  <div class="form-card">
+    <div class="section-title">Seleccionar proyecto</div>
+
+    <select [(ngModel)]="proyectoSeleccionado">
+      <option *ngFor="let p of proyectos" [value]="p.id_proyecto">
+        {{ p.id_proyecto }} - {{ p.nombre_proyecto }}
+      </option>
+    </select>
+  </div>
+
+  <div class="form-card">
+    <div class="section-title">Datos del presupuesto</div>
+
+    <p><strong>Año:</strong> {{ presupuesto.anio }}</p>
+    <p><strong>Fecha aprobación:</strong> {{ presupuesto.fecha_aprobacion }}</p>
+    <p><strong>Estado:</strong> {{ presupuesto.estado }}</p>
+  </div>
+
+  <div class="table-card">
+    <div class="section-title">Detalle del presupuesto</div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Descripción</th>
+          <th>Cantidad</th>
+          <th>Precio</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let d of detalles">
+          <td>{{ d.descripcion }}</td>
+          <td>{{ d.cantidad }}</td>
+
+          <td>
+            {{ d.precio | currency: "HNL" : "symbol" : "1.2-2" }}
+          </td>
+
+          <td>
+            {{ d.total | currency: "HNL" : "symbol" : "1.2-2" }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pagos-layout">
+    <div class="form-card">
+      <div class="section-title">Total del presupuesto</div>
+
+      <h2 class="total-proyecto">
+        {{ calcularTotal() | currency: "HNL" : "symbol" : "1.2-2" }}
+      </h2>
+    </div>
+
+    <div class="form-card">
+      <div class="section-title">Distribución del presupuesto</div>
+
+      <canvas #grafico></canvas>
+    </div>
+  </div>
+</div>
