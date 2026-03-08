@@ -23,9 +23,11 @@ interface Pago {
 })
 export class PagosComponent {
   busqueda: string = '';
+  cuotasFactura: any[] = [];
 
   facturas: any[] = [
     {
+      id_factura: 1,
       codigo_factura: 'FAC-0001',
       codigo_servicio: 'A-001',
       nombre_cliente: 'Jessica Avila',
@@ -36,6 +38,7 @@ export class PagosComponent {
     },
 
     {
+      id_factura: 2,
       codigo_factura: 'FAC-0002',
       codigo_servicio: 'A-001',
       nombre_cliente: 'Jessica Avila',
@@ -46,12 +49,36 @@ export class PagosComponent {
     },
 
     {
+      id_factura: 3,
       codigo_factura: 'FAC-0003',
       codigo_servicio: 'A-015',
       nombre_cliente: 'Jessica Avila',
       periodo: 'Marzo 2026',
-      monto_total: 160,
+      monto_total: 210,
       fecha_vencimiento: '2026-03-05',
+      estado: 'Pendiente',
+    },
+  ];
+
+  cuotas: any[] = [
+    {
+      id_factura: 3,
+      numero_cuota: 1,
+      monto: 70,
+      estado: 'Pendiente',
+    },
+
+    {
+      id_factura: 3,
+      numero_cuota: 2,
+      monto: 70,
+      estado: 'Pendiente',
+    },
+
+    {
+      id_factura: 3,
+      numero_cuota: 3,
+      monto: 70,
       estado: 'Pendiente',
     },
   ];
@@ -64,6 +91,8 @@ export class PagosComponent {
 
   contadorPagos = 1;
 
+  acuerdosGenerados: number[] = [3];
+
   buscarCliente() {
     this.facturasCliente = this.facturas.filter(
       (f) =>
@@ -75,10 +104,14 @@ export class PagosComponent {
   seleccionarFactura(f: any) {
     this.facturaSeleccionada = f;
 
-    // limpiar recibo anterior
-    this.pagos = [];
-  }
+    this.cuotasFactura = [];
 
+    if (this.acuerdosGenerados.includes(f.id_factura)) {
+      this.cuotasFactura = this.cuotas.filter(
+        (c) => c.id_factura === f.id_factura,
+      );
+    }
+  }
   registrarPago() {
     if (!this.facturaSeleccionada) {
       alert('Seleccione una factura');
@@ -89,19 +122,12 @@ export class PagosComponent {
 
     const nuevoPago: Pago = {
       id_pago: this.contadorPagos,
-
       codigo_factura: this.facturaSeleccionada.codigo_factura,
-
       codigo_servicio: this.facturaSeleccionada.codigo_servicio,
-
       nombre_cliente: this.facturaSeleccionada.nombre_cliente,
-
       periodo: this.facturaSeleccionada.periodo,
-
       monto_pagado: this.facturaSeleccionada.monto_total,
-
       fecha_pago: new Date().toLocaleDateString(),
-
       numero_recibo: recibo,
     };
 
@@ -110,6 +136,10 @@ export class PagosComponent {
     this.facturaSeleccionada.estado = 'Pagada';
 
     this.contadorPagos++;
+
+    // CERRAR VISTA
+    this.facturaSeleccionada = null;
+    this.cuotasFactura = [];
   }
 
   imprimir() {
@@ -129,9 +159,11 @@ font-family: Arial, sans-serif;
 text-align:center;
 padding:40px;
 }
+
 hr{
 margin:15px 0;
 }
+
 button{
 display:none;
 }
@@ -148,10 +180,19 @@ ${contenido}
 `);
 
       ventana.document.close();
-      ventana.focus();
-      ventana.print();
 
-      ventana.onafterprint = () => ventana.close();
+      setTimeout(() => {
+        ventana.print();
+
+        ventana.close();
+
+        // LIMPIAR RECIBO DE LA PANTALLA
+        this.pagos = [];
+
+        // LIMPIAR FACTURA ACTIVA
+        this.facturaSeleccionada = null;
+        this.cuotasFactura = [];
+      }, 500);
     }
   }
 
@@ -160,5 +201,33 @@ ${contenido}
     const vencimiento = new Date(f.fecha_vencimiento);
 
     return f.estado === 'Pendiente' && vencimiento < hoy;
+  }
+
+  pagarCuota(c: any) {
+    const cuota = this.cuotasFactura.find(
+      (q) => q.numero_cuota === c.numero_cuota,
+    );
+
+    if (cuota) {
+      cuota.estado = 'Pagada';
+    }
+
+    alert('Cuota pagada');
+
+    // VALIDAR SI TODAS LAS CUOTAS ESTAN PAGADAS
+
+    const todasPagadas = this.cuotasFactura.every((q) => q.estado === 'Pagada');
+
+    if (todasPagadas) {
+      if (this.facturaSeleccionada) {
+        this.facturaSeleccionada.estado = 'Pagada';
+      }
+
+      alert('Factura pagada completamente');
+    }
+  }
+
+  getCuotasPagadas() {
+    return this.cuotasFactura.filter((c) => c.estado === 'Pagada').length;
   }
 }

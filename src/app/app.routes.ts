@@ -9,19 +9,18 @@ import { LecturasComponent } from './pages/lecturas/lecturas.component';
 import { TarifasComponent } from './pages/tarifas/tarifas.component';
 import { FacturasComponent } from './pages/facturas/facturas.component';
 import { PagosComponent } from './pages/pagos/pagos.component';
-
-
+import { CajaDiaComponent } from './pages/caja-dia/caja-dia.component';
 
 export const routes: Routes = [
-    {path: '', component: LoginComponent},
-    {path: 'dashboard', component:DashboardComponent},
-    {path: 'miembros', component: MiembrosComponent},
-    {path:'constancias', component:ConstanciasComponent},
-    {path: 'servicios', component: ServiciosComponent},
-    {path: 'medidores', component: MedidoresComponent},
-    {path: 'lecturas', component: LecturasComponent},
-    {path: 'tarifas', component: TarifasComponent},
-    {path: 'facturas', component: FacturasComponent},
-    {path: 'pagos', component: PagosComponent},
-
+  { path: '', component: LoginComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'miembros', component: MiembrosComponent },
+  { path: 'constancias', component: ConstanciasComponent },
+  { path: 'servicios', component: ServiciosComponent },
+  { path: 'medidores', component: MedidoresComponent },
+  { path: 'lecturas', component: LecturasComponent },
+  { path: 'tarifas', component: TarifasComponent },
+  { path: 'facturas', component: FacturasComponent },
+  { path: 'pagos', component: PagosComponent },
+  { path: 'caja-dia', component: CajaDiaComponent },
 ];

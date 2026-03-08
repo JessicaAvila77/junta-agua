@@ -42,11 +42,56 @@
 
       <p><b>Total:</b> L {{ facturaSeleccionada.monto_total }}</p>
 
+      <p
+        *ngIf="acuerdosGenerados.includes(facturaSeleccionada.id_factura)"
+        class="acuerdo-activo"
+      >
+        <b>Acuerdo de pago activo</b>
+      </p>
+
       <br />
 
       <button class="btn-primary" (click)="registrarPago()">
         Registrar Pago
       </button>
+    </div>
+
+    <div class="form-card" *ngIf="cuotasFactura.length > 0">
+      <div class="section-title">Cuotas del acuerdo</div>
+
+      <p>
+        Cuotas pagadas:
+        {{ getCuotasPagadas() }} / {{ cuotasFactura.length }}
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Cuota</th>
+            <th>Monto</th>
+            <th>Estado</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let c of cuotasFactura">
+            <td>{{ c.numero_cuota }}</td>
+            <td>L {{ c.monto }}</td>
+            <td>{{ c.estado }}</td>
+
+            <td>
+              <button
+                class="btn-primary"
+                (click)="pagarCuota(c)"
+                [disabled]="c.estado === 'Pagada'"
+              >
+                Pagar cuota
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <!-- RECIBO -->

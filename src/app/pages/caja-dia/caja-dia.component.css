@@ -1,0 +1,44 @@
+.content{
+margin-left:240px;
+padding:30px;
+background:#f5f6f8;
+min-height:100vh;
+}
+
+.panel-header{
+background:#1e9c98;
+color:white;
+padding:20px;
+border-radius:12px;
+margin-bottom:20px;
+}
+
+.form-card,
+.table-card{
+background:white;
+border-radius:12px;
+padding:25px;
+border:1px solid #e5e7eb;
+margin-bottom:20px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th,td{
+padding:10px;
+border-bottom:1px solid #eee;
+text-align:left;
+}
+
+.btn-primary{
+background:#1e9c98;
+color:white;
+border:none;
+padding:10px 20px;
+border-radius:8px;
+cursor:pointer;
+}
+

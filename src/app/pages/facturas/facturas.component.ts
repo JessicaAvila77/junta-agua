@@ -9,7 +9,7 @@ import { FacturaView } from '../../models/factura-view.models';
   standalone: true,
   imports: [CommonModule, FormsModule, SidebarComponent],
   templateUrl: './facturas.component.html',
-  styleUrl: './facturas.component.css',
+  styleUrls: ['./facturas.component.css'],
 })
 export class FacturasComponent {
   periodoSeleccionado: string = '';
@@ -20,10 +20,16 @@ export class FacturasComponent {
 
   contadorFacturas = 1;
 
+  facturaAcuerdo: any = null;
+
+  numeroCuotas: number = 1;
+
+  acuerdosGenerados:number[]=[]
+
   miembros = [
     { id: 1, nombre: 'Juan Pérez', identidad: '080119990001' },
     { id: 2, nombre: 'María López', identidad: '080119990002' },
-    { id: 3, nombre: 'Carlos Mejía', identidad: '080119990003' },
+    { id: 3, nombre: 'Jessica Avila', identidad: '080119990003' },
   ];
 
   servicios = [
@@ -118,6 +124,88 @@ export class FacturasComponent {
   }
 
   imprimir() {
-    window.print();
+    const contenido = document.querySelector('.factura-print')?.innerHTML;
+
+    const ventana = window.open('', '', 'width=700,height=600');
+
+    if (ventana) {
+      ventana.document.write(`
+<html>
+<head>
+<title>Factura</title>
+
+<style>
+
+body{
+font-family:Arial;
+padding:40px;
+}
+
+hr{
+margin:15px 0;
+}
+
+button{
+display:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+${contenido}
+
+</body>
+
+</html>
+`);
+
+      ventana.document.close();
+
+      ventana.focus();
+
+      ventana.print();
+
+      ventana.onafterprint = () => ventana.close();
+    }
+
+    this.facturaVista = null;
   }
+  seleccionarParaAcuerdo(f: any) {
+    this.facturaAcuerdo = f;
+    this.numeroCuotas = 1;
+  }
+
+  cancelarAcuerdo() {
+    this.facturaAcuerdo = null;
+  }
+
+ generarAcuerdo(){
+
+if(!this.facturaAcuerdo){
+return
+}
+
+if(this.numeroCuotas<=0){
+alert("Ingrese número de cuotas")
+return
+}
+
+const montoCuota=this.facturaAcuerdo.monto_total/this.numeroCuotas
+
+console.log("Factura:",this.facturaAcuerdo.codigo_factura)
+
+console.log("Cuotas:",this.numeroCuotas)
+
+console.log("Monto por cuota:",montoCuota)
+
+this.acuerdosGenerados.push(this.facturaAcuerdo.id_factura)
+
+alert("Acuerdo generado correctamente")
+
+this.facturaAcuerdo=null
+
+}
 }

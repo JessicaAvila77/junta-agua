@@ -63,6 +63,14 @@
             <td class="actions">
               <button class="btn-edit" (click)="verFactura(f)">Ver</button>
 
+              <button
+                class="btn-acuerdo"
+                (click)="seleccionarParaAcuerdo(f)"
+                [disabled]="acuerdosGenerados.includes(f.id_factura)"
+              >
+                Acuerdo
+              </button>
+
               <button class="btn-delete" (click)="anularFactura(f)">
                 Anular
               </button>
@@ -70,6 +78,32 @@
           </tr>
         </tbody>
       </table>
+    </div>
+  </div>
+
+  <div class="form-card" *ngIf="facturaAcuerdo">
+    <div class="section-title">Crear acuerdo de pago</div>
+
+    <p><b>Factura:</b> {{ facturaAcuerdo.id_factura }}</p>
+    <p><b>Cliente:</b> {{ facturaAcuerdo.nombre_cliente }}</p>
+    <p><b>Total:</b> L {{ facturaAcuerdo.monto_total }}</p>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Número de cuotas</label>
+
+        <input type="number" [(ngModel)]="numeroCuotas" />
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button class="btn-primary" (click)="generarAcuerdo()">
+        Generar acuerdo
+      </button>
+
+      <button class="btn-secondary" (click)="cancelarAcuerdo()">
+        Cancelar
+      </button>
     </div>
   </div>
 

@@ -1,0 +1,51 @@
+<app-sidebar></app-sidebar>
+
+<div class="content">
+  <div class="panel-header">
+    <h2>Caja del día</h2>
+    <span>Control de pagos registrados hoy</span>
+  </div>
+
+  <!-- RESUMEN -->
+
+  <div id="reporteCaja">
+    <div class="form-card">
+      <h3>Resumen</h3>
+
+      <p><strong>Fecha:</strong> {{ fechaHoy }}</p>
+
+      <p><strong>Pagos registrados:</strong> {{ pagos.length }}</p>
+
+      <p><strong>Total recaudado:</strong> L {{ totalRecaudado }}</p>
+    </div>
+    <!-- TABLA -->
+
+    <div class="table-card">
+      <h3>Pagos registrados hoy</h3>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Recibo</th>
+            <th>Cliente</th>
+            <th>Servicio</th>
+            <th>Monto</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let p of pagos">
+            <td>{{ p.numero_recibo }}</td>
+            <td>{{ p.nombre_cliente }}</td>
+            <td>{{ p.codigo_servicio }}</td>
+            <td>L {{ p.monto_pagado }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <button class="btn-primary" (click)="imprimir()">
+      Imprimir caja del día
+    </button>
+  </div>
+</div>
