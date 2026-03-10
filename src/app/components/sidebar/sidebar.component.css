@@ -34,14 +34,7 @@
    TITULO
 =================================*/
 
-.sidebar-title {
-  text-align: center;
-  font-size: 18px;
-  font-weight: 500;
-  color: #111827;
-  margin-bottom: 30px;
-  line-height: 1.4;
-}
+
 
 /* ===============================
    LINKS GENERALES (Dashboard)
@@ -177,4 +170,31 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.sidebar-header{
+  display:flex;
+  align-items:center;
+  gap:0px;
+  padding:10px 0;
+  border-bottom:1px solid #e5e7eb;
+}
+
+.sidebar-logo{
+
+width:90px;
+height:auto;
+
+}
+
+.sidebar-title{
+
+font-size:16px;
+font-weight:500;
+line-height:1.2;
+
+color:#1e9c98;
+
+text-align:left;
+
 }

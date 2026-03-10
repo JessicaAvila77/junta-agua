@@ -1,115 +1,131 @@
 <app-sidebar></app-sidebar>
 
 <div class="content">
-  <!-- PANEL PRINCIPAL -->
-  <div class="main-panel">
-    <div class="panel-header">
-  <div class="panel-header-content">
-    <h2>Panel Administrativo</h2>
-    <span class="panel-subtitle">Resumen general del sistema</span>
-  </div>
-</div>
 
-    <div class="cards-container">
-      <div class="card">
-        <div class="card-icon members">👥</div>
+  <div class="main-panel">
+
+    <!-- HEADER -->
+    <div class="panel-header">
+      <div class="panel-header-content">
+        <h2>Panel Administrativo</h2>
+        <span class="panel-subtitle">Resumen general del sistema</span>
+      </div>
+    </div>
+
+    <!-- TARJETAS -->
+    <div class="dashboard-grid">
+
+      <div class="card card-members">
+        <div class="card-icon">👥</div>
         <div>
           <h3>Miembros</h3>
-          <p>120</p>
+          <p class="card-number">120</p>
         </div>
       </div>
 
-      <div class="card">
-        <div class="card-icon payments">💰</div>
+      <div class="card card-payments">
+        <div class="card-icon">💰</div>
         <div>
           <h3>Pagos (Mes)</h3>
-          <p>85</p>
+          <p class="card-number">85</p>
         </div>
       </div>
 
-      <div class="card">
-        <div class="card-icon projects">📁</div>
+      <div class="card card-projects">
+        <div class="card-icon">📁</div>
         <div>
           <h3>Proyectos</h3>
-          <p>3</p>
+          <p class="card-number">3</p>
         </div>
       </div>
 
-      <div class="card">
-        <div class="card-icon alert">⚠️</div>
+      <div class="card card-warning">
+        <div class="card-icon">⚠️</div>
         <div>
           <h3>Servicios Suspendidos</h3>
-          <p>5</p>
+          <p class="card-number">5</p>
         </div>
       </div>
 
-      <!-- Facturas Vencidas -->
-      <div class="card">
-        <div class="card-icon danger">🧾</div>
+      <div class="card card-danger">
+        <div class="card-icon">🧾</div>
         <div>
           <h3>Facturas Vencidas</h3>
-          <p>18</p>
+          <p class="card-number danger-text">18</p>
         </div>
       </div>
 
-      <!-- Acuerdos de Pago -->
-      <div class="card">
-        <div class="card-icon warning">📑</div>
+      <div class="card card-warning">
+        <div class="card-icon">📑</div>
         <div>
-          <h3>Acuerdos de pago</h3>
-          <p>6</p>
+          <h3>Acuerdos de Pago</h3>
+          <p class="card-number">6</p>
         </div>
       </div>
 
-      <!-- % Morosidad -->
-      <div class="card">
-        <div class="card-icon percentage">📊</div>
+      <div class="card card-members">
+        <div class="card-icon">📊</div>
         <div>
           <h3>% Morosidad</h3>
-          <p>15%</p>
+          <p class="card-number warning-text">15%</p>
         </div>
       </div>
 
-      <!-- Mantenimientos Pendientes -->
-      <div class="card">
-        <div class="card-icon maintenance">🔧</div>
+      <div class="card card-projects">
+        <div class="card-icon">🔧</div>
         <div>
-          <h3>Mantenimientos Pendientes</h3>
-          <p>4</p>
+          <h3>Mantenimientos</h3>
+          <p class="card-number">4</p>
         </div>
       </div>
 
-      <!-- Activos Registrados -->
-      <div class="card">
-        <div class="card-icon assets">🛠</div>
+      <div class="card card-payments">
+        <div class="card-icon">🛠</div>
         <div>
-          <h3>Activos Registrados</h3>
-          <p>27</p>
+          <h3>Activos</h3>
+          <p class="card-number">27</p>
         </div>
       </div>
+
     </div>
+
+    <!-- GRAFICOS -->
+    <div class="charts-container">
+
+      <div class="chart-card">
+        <h3>Pagos mensuales</h3>
+        <canvas id="paymentsChart"></canvas>
+      </div>
+
+      <div class="chart-card">
+        <h3>Morosidad del sistema</h3>
+        <canvas id="debtChart"></canvas>
+      </div>
+
+    </div>
+
   </div>
 
-  <!-- ACTIVIDADES APARTE -->
+  <!-- PANEL ACTIVIDADES -->
   <div class="activity-panel">
+
     <h3>Actividades recientes</h3>
 
-      <div class="activity-item">
-      <strong>Mantenimiento realizado</strong>
-      <p>Hoy</p>
+    <div class="activity-item">
+      <div class="activity-title">Mantenimiento realizado</div>
+      <div class="activity-time">Hoy</div>
     </div>
 
     <div class="activity-item">
-      <strong>Pago registrado</strong>
-      <p>Hace 2 horas</p>
+      <div class="activity-title">Pago registrado</div>
+      <div class="activity-time">Hace 2 horas</div>
     </div>
 
     <div class="activity-item">
-      <strong>Nuevo miembro agregado</strong>
-      <p>Ayer</p>
+      <div class="activity-title">Nuevo miembro agregado</div>
+      <div class="activity-time">Ayer</div>
     </div>
 
-    
-  
   </div>
+
 </div>
