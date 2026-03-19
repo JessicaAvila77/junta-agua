@@ -1,0 +1,129 @@
+<div class="layout">
+
+  <app-sidebar></app-sidebar>
+
+  <div class="content">
+
+    <div class="panel-header">
+      <h2>Registro de Mantenimiento</h2>
+      <span class="panel-subtitle">Gestión de mantenimientos</span>
+    </div>
+
+    <!-- FORMULARIO -->
+
+    <div class="form-card">
+
+      <div class="form-row">
+
+        <select [(ngModel)]="idActivoSeleccionado">
+          <option [ngValue]="0">Seleccione activo</option>
+          <option *ngFor="let a of activos" [ngValue]="a.id_activo">
+            {{ a.nombre }}
+          </option>
+        </select>
+
+        <input type="text" placeholder="Tipo mantenimiento" [(ngModel)]="tipoMantenimiento"/>
+
+      </div>
+
+      <div class="form-row">
+        <input type="text" placeholder="Descripción" [(ngModel)]="descripcion"/>
+      </div>
+
+      <!-- 🔥 FECHAS CON LABELS -->
+
+      <div class="form-row">
+
+        <div class="form-group">
+          <label>Fecha programada</label>
+          <input type="date" [(ngModel)]="fechaProgramada"/>
+        </div>
+
+        <div class="form-group">
+          <label>Fecha ejecución</label>
+          <input type="date" [(ngModel)]="fechaEjecucion"/>
+        </div>
+
+      </div>
+
+      <div class="form-row">
+        <select [(ngModel)]="estado">
+          <option value="Pendiente">Pendiente</option>
+          <option value="Finalizado">Finalizado</option>
+        </select>
+      </div>
+
+      <!-- 🔥 EMPLEADOS MEJORADOS -->
+
+      <div class="empleados-card">
+
+        <h4>Asignar empleados</h4>
+
+        <div class="empleados-grid">
+
+          <label *ngFor="let e of empleadosDisponibles" class="empleado-item">
+            <input 
+              type="checkbox"
+              [checked]="empleadosSeleccionados.includes(e)"
+              (change)="toggleEmpleado(e)"
+            />
+            <span>{{ e }}</span>
+          </label>
+
+        </div>
+
+      </div>
+
+      <div class="form-actions">
+        <button class="btn-primary" (click)="guardarMantenimiento()">
+          {{ editando ? 'Actualizar' : 'Guardar' }}
+        </button>
+
+        <button class="btn-secondary" (click)="limpiar()">
+          Cancelar
+        </button>
+      </div>
+
+    </div>
+
+    <!-- TABLA -->
+
+    <div class="table-card">
+
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Activo</th>
+            <th>Tipo</th>
+            <th>Estado</th>
+            <th>Empleados</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr *ngFor="let m of mantenimientos; let i = index">
+
+            <td>{{ m.id_mantenimiento }}</td>
+            <td>{{ obtenerNombreActivo(m.id_activo) }}</td>
+            <td>{{ m.tipo_mantenimiento }}</td>
+            <td>{{ m.estado }}</td>
+            <td>{{ m.empleados.join(', ') }}</td>
+
+            <td class="actions">
+              <button class="btn-edit" (click)="editar(m)">Editar</button>
+              <button class="btn-delete" (click)="eliminar(i)">Eliminar</button>
+            </td>
+
+          </tr>
+
+        </tbody>
+      </table>
+
+    </div>
+
+  </div>
+
+</div>

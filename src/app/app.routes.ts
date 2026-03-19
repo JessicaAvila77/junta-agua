@@ -20,6 +20,9 @@ import { ServiciosSuspendidosComponent } from './pages/reportes/servicios-suspen
 import { IngresosDiaComponent } from './pages/reportes/ingresos-dia/ingresos-dia.component';
 import { AcuerdosPagoComponent } from './pages/reportes/acuerdos-pago/acuerdos-pago.component';
 import { PresupuestoProyectosComponent } from './pages/reportes/presupuesto-proyectos/presupuesto-proyectos.component';
+import { ActivosComponent } from './pages/activos/activos.component';
+import { MantenimientoComponent } from './pages/mantenimiento/mantenimiento.component';
+
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -43,5 +46,7 @@ export const routes: Routes = [
   { path: 'ingresos-dia', component: IngresosDiaComponent},
   { path: 'acuerdos-pago', component: AcuerdosPagoComponent},
   { path: 'presupuesto-proyectos', component: PresupuestoProyectosComponent},
+  { path: 'activos', component: ActivosComponent},
+  { path: 'mantenimientos', component: MantenimientoComponent},
 
 ];

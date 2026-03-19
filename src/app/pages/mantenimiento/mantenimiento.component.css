@@ -1,0 +1,202 @@
+/* CONTENEDOR PRINCIPAL */
+
+.content{
+  margin-left:240px;
+  padding:30px;
+  background:#f5f6f8;
+  min-height:100vh;
+}
+
+/* BARRA SUPERIOR */
+
+.panel-header{
+  background:#1e9c98;
+  color:white;
+  padding:20px;
+  border-radius:12px;
+  margin-bottom:20px;
+}
+
+.panel-header h2{
+  margin:0;
+  font-weight:500;
+}
+
+.panel-subtitle{
+  font-size:14px;
+  opacity:0.9;
+}
+
+/* TARJETAS */
+
+.form-card,
+.table-card{
+  background:white;
+  border-radius:14px;
+  padding:25px;
+  border:1px solid #e5e7eb;
+  margin-bottom:25px;
+}
+
+/* TITULOS */
+
+.section-title{
+  font-size:15px;
+  font-weight:500;
+  margin-top:20px;
+  margin-bottom:10px;
+}
+
+/* FILAS DEL FORMULARIO */
+
+.form-row{
+  display:flex;
+  gap:15px;
+  margin-bottom:15px;
+}
+
+.form-row input,
+.form-row select{
+  flex:1;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid #d1d5db;
+  font-size:14px;
+}
+
+/* BOTONES */
+
+.form-actions{
+  margin-top:20px;
+}
+
+.btn-primary{
+  background:#1e9c98;
+  color:white;
+  border:none;
+  padding:10px 18px;
+  border-radius:8px;
+  margin-right:10px;
+  cursor:pointer;
+}
+
+.btn-primary:hover{
+  background:#178a87;
+}
+
+.btn-secondary{
+  background:#e5e7eb;
+  border:none;
+  padding:10px 18px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+/* TABLA */
+
+.table-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:15px;
+}
+
+.search-input{
+  padding:8px 10px;
+  border-radius:8px;
+  border:1px solid #d1d5db;
+}
+
+/* CONTENEDOR CON SCROLL */
+
+.table-container{
+  max-height:300px;
+  overflow-y:auto;
+}
+
+/* TABLA */
+
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+thead th{
+  text-align:left;
+  font-weight:500;
+  padding:10px;
+  border-bottom:2px solid #e5e7eb;
+  background:white;
+  position:sticky;
+  top:0;
+}
+
+td{
+  padding:10px;
+  border-bottom:1px solid #f1f1f1;
+}
+
+/* ACCIONES */
+.actions button{
+  padding:6px 12px;
+  margin-right:6px;
+  border-radius:8px;
+  border:none;
+  cursor:pointer;
+  font-size:13px;
+  font-weight:500;
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  transition:all 0.2s ease;
+}
+
+/* EDITAR */
+
+.btn-edit{
+  background:#3b82f6;
+  color:white;
+}
+
+.btn-edit:hover{
+  background:#2563eb;
+  transform:translateY(-1px);
+}
+
+/* ELIMINAR */
+
+.btn-delete{
+  background:#ef4444;
+  color:white;
+}
+
+.btn-delete:hover{
+  background:#dc2626;
+  transform:translateY(-1px);
+}
+
+.search-input{
+  padding:8px 10px;
+  border-radius:8px;
+  border:1px solid #d1d5db;
+}
+
+.form-group{
+  display:flex;
+  flex-direction:column;
+  flex:1;
+}
+
+.form-group label{
+  font-size:13px;
+  margin-bottom:4px;
+  color:#555;
+}
+
+.info-servicio{
+  background:#f3f4f6;
+  padding:10px;
+  border-radius:8px;
+  margin-bottom:15px;
+  font-size:14px;
+}

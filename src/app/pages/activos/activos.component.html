@@ -1,0 +1,126 @@
+<app-sidebar></app-sidebar>
+<div class="content">
+
+  <div class="panel-header">
+    <h2>Registro de Activos</h2>
+    <span class="panel-subtitle">Gestión de activos del sistema</span>
+  </div>
+
+  <!-- FORMULARIO -->
+
+  <div class="form-card">
+
+    <h3 class="section-title">Datos del activo</h3>
+
+    <div class="form-row">
+
+      <input type="text" placeholder="Nombre del activo" [(ngModel)]="nombre" />
+
+      <!-- 🔥 AQUÍ ESTÁ EL FIX -->
+      <select [(ngModel)]="tipoActivoSeleccionado">
+        <option [ngValue]="0">Seleccione tipo</option>
+        <option *ngFor="let tipo of tiposActivos" [ngValue]="tipo.id_tipo_activo">
+          {{ tipo.nombre }}
+        </option>
+      </select>
+
+    </div>
+
+    <div class="form-row">
+
+      <input type="text" placeholder="Ubicación" [(ngModel)]="ubicacion" />
+
+      <select [(ngModel)]="estado">
+        <option value="Activo">Activo</option>
+        <option value="Inactivo">Inactivo</option>
+      </select>
+
+    </div>
+
+    <div class="form-row">
+
+      <div class="form-group">
+        <label>Fecha instalación</label>
+        <input type="date" [(ngModel)]="fechaInstalacion" />
+      </div>
+
+    </div>
+
+    <div class="form-actions">
+      <button class="btn-primary" (click)="guardarActivo()">
+        {{ editando ? 'Actualizar' : 'Guardar' }}
+      </button>
+
+      <button class="btn-secondary" (click)="limpiarFormulario()">
+        Cancelar
+      </button>
+    </div>
+
+  </div>
+
+  <!-- TABLA -->
+
+  <div class="table-card">
+
+    <div class="table-header">
+      <h3>Activos registrados</h3>
+
+      <input
+        class="search-input"
+        placeholder="Buscar activo por ID"
+        [(ngModel)]="busquedaActivo"
+      />
+    </div>
+
+    <div class="table-container">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Tipo</th>
+            <th>Nombre</th>
+            <th>Ubicación</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr *ngFor="let activo of activosFiltrados(); let i = index">
+
+            <td>{{ activo.id_activo }}</td>
+
+            <td>{{ obtenerNombreTipo(activo.id_tipo_activo) }}</td>
+
+            <td>{{ activo.nombre }}</td>
+            <td>{{ activo.ubicacion }}</td>
+            <td>{{ activo.fecha_instalacion }}</td>
+            <td>{{ activo.estado }}</td>
+
+            <td class="actions">
+
+              <button class="btn-edit" (click)="editarActivo(activo)">
+                Editar
+              </button>
+
+              <button class="btn-delete" (click)="eliminarActivo(i)">
+                Eliminar
+              </button>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</div>
